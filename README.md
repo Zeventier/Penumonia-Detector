@@ -1,7 +1,7 @@
 # Bangkit 2022 Capstone Team : C22-PS101
 
-# Penumonia-Detector
-## Pneumonia Detector Using Chest X-ray Image
+## Penumonia-Detector
+Pneumonia Detector Using Chest X-ray Image
 
 ## Our Team Member 
 
