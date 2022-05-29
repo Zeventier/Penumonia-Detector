@@ -6,8 +6,11 @@ import android.os.Bundle
 import com.example.pneumoniadetector.R
 import com.example.pneumoniadetector.databinding.ActivityLandingPageBinding
 import com.example.pneumoniadetector.databinding.ActivityMainBinding
+import com.example.pneumoniadetector.ui.MainActivity
 import com.example.pneumoniadetector.ui.login.LoginActivity
 import com.example.pneumoniadetector.ui.register.RegisterActivity
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LandingPageActivity : AppCompatActivity() {
 
@@ -31,6 +34,17 @@ class LandingPageActivity : AppCompatActivity() {
 
         binding.tvLogin2.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = Firebase.auth.currentUser
+        if(currentUser != null){
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }

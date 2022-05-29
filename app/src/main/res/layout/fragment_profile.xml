@@ -15,7 +15,7 @@
             android:id="@+id/btn_logout"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="#D70032"
             android:text="Logout"
             android:textAllCaps="false"
@@ -25,13 +25,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_editProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_editProfile"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_editProfile"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="216dp"
+            android:layout_marginTop="96dp"
             android:backgroundTint="#D70032"
             android:text="Edit Profile"
             android:textAllCaps="false"
