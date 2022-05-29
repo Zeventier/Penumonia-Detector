@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "347343223443",
+    "project_id": "test-finalproject",
+    "storage_bucket": "test-finalproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347343223443:android:7ca9cc856fcd269133ab66",
+        "android_client_info": {
+          "package_name": "com.example.pneumoniadetector"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "347343223443-90ts5uug54bqq6ocsjtdm7acejbpj430.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pneumoniadetector",
+            "certificate_hash": "0061fc001d929288278fdbcf341a7d3c80fad5c3"
+          }
+        },
+        {
+          "client_id": "347343223443-9u9je4uv9mln6pt6neaogvp9a26595eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7ylpltcSF_kNkNWc9ccCLDEpe0pEae10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "347343223443-9u9je4uv9mln6pt6neaogvp9a26595eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
