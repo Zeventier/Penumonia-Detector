@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.camera.CameraActivity">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/view_finder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- the icon color will be black in CameraActivity -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_back"
+        style="?borderlessButtonStyle"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/transparent"
+        android:shadowRadius="0"
+        app:icon="@drawable/ic_baseline_arrow_back_ios_new_24"
+        app:iconTint="@color/white"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="24dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- the icon color will be black in CameraActivity -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_flash"
+        style="?borderlessButtonStyle"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/transparent"
+        app:icon="@drawable/ic_baseline_flash_on_24"
+        app:iconTint="@color/white"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="32dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_take_photo"
+        android:layout_width="95dp"
+        android:layout_height="0dp"
+        android:layout_margin="64dp"
+        android:backgroundTint="@color/red_1"
+        app:icon="@drawable/ic_baseline_photo_camera_24"
+        app:iconPadding="0dp"
+        app:iconGravity="textStart"
+        app:cornerRadius="50dp"
+        app:iconSize="64dp"
+        app:layout_constraintDimensionRatio="0.85:1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_from_gallery"
+        android:layout_width="42dp"
+        android:layout_height="0dp"
+        android:layout_margin="64dp"
+        android:backgroundTint="@color/white"
+        app:icon="@drawable/ic_baseline_photo_album_24"
+        app:iconPadding="0dp"
+        app:iconGravity="textStart"
+        app:cornerRadius="50dp"
+        app:iconSize="24dp"
+        app:iconTint="@color/black"
+        app:layout_constraintDimensionRatio="0.80:1"
+        app:layout_constraintTop_toTopOf="@id/btn_take_photo"
+        app:layout_constraintBottom_toBottomOf="@id/btn_take_photo"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

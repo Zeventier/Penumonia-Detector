@@ -5,5 +5,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
+    <string name="camera_usage_not_granted">Camera usage is not possible because required permission is not granted by user</string>
+    <string name="camera_usage_granted">Required permission is granted by user</string>
+    <string name="failed_to_show_camera">Failed to show camera</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

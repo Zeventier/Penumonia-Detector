@@ -2,6 +2,7 @@ package com.example.pneumoniadetector.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.pneumoniadetector.R
 import com.example.pneumoniadetector.databinding.ActivityMainBinding
+import com.example.pneumoniadetector.tools.GeneralTools
+import com.example.pneumoniadetector.ui.home.HomeFragment
 import com.example.pneumoniadetector.ui.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -74,6 +77,28 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }
+    }
+
+    // Receive request permission from fragment
+    // example from HomeFragment for requesting camera permissions
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == HomeFragment.REQUEST_CAMERA_CODE_PERMISSION){
+            if(!GeneralTools.allPermissionGranted(HomeFragment.REQUIRED_CAMERA_PERMISSION, this)){
+                GeneralTools.showAlertDialog(this, getString(R.string.camera_usage_not_granted))
+            }
+            else{
+                Toast.makeText(
+                    this,
+                    getString(R.string.camera_usage_granted),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 }
