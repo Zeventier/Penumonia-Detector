@@ -2,6 +2,7 @@ package com.example.pneumoniadetector.ui
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -19,6 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
+
+    private val mainViewModel by viewModels<MainViewModel> {
+        ViewModelFactory.getInstance()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,20 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         isLogin()
+        setupViewModel()
+    }
+
+    private fun setupViewModel() {
+//        mainViewModel.isLogin().observe(this) { user ->
+//            if (user != null) {
+//                // User is signed in
+//            } else {
+//                // No user is signed in
+//                val intent = Intent(this, LoginActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }
+//        }
     }
 
     private fun isLogin() {
