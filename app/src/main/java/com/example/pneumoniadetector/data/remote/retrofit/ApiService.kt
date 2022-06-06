@@ -1,4 +1,4 @@
-package com.example.pneumoniadetector.data.remote.retrofit
+package com.bangkit.pneumoniadetector.data.remote.retrofit
 
 import com.example.pneumoniadetector.data.remote.response.ResultResponse
 import retrofit2.http.GET

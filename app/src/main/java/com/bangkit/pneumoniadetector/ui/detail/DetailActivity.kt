@@ -1,4 +1,4 @@
-package com.example.pneumoniadetector.ui.detail
+package com.bangkit.pneumoniadetector.ui.detail
 
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
@@ -8,10 +8,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
-import com.example.pneumoniadetector.R
 import com.example.pneumoniadetector.data.remote.response.ResultItem
 import com.example.pneumoniadetector.databinding.ActivityCameraBinding
 import com.example.pneumoniadetector.databinding.ActivityDetailBinding
+import com.bangkit.pneumoniadetector.R
 
 class DetailActivity : AppCompatActivity() {
 

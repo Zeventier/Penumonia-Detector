@@ -1,9 +1,11 @@
-package com.example.pneumoniadetector.ui.preview
+package com.bangkit.pneumoniadetector.ui.preview
 
 import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bangkit.pneumoniadetector.databinding.ActivityPreviewBinding
+import com.bangkit.pneumoniadetector.ui.MainActivity
 import com.example.pneumoniadetector.databinding.ActivityPreviewBinding
 import com.example.pneumoniadetector.tools.FilePhotoTools
 import com.example.pneumoniadetector.ui.MainActivity
