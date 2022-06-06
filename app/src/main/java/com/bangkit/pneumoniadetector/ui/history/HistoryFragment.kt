@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import com.bangkit.pneumoniadetector.R
 import com.bangkit.pneumoniadetector.databinding.FragmentHistoryBinding
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -27,6 +30,14 @@ class HistoryFragment : Fragment() {
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
 
         val user = Firebase.auth.currentUser
+
+        if(user?.photoUrl != null) {
+            Glide.with(FragmentActivity())
+                .load(user.photoUrl)
+                .into(binding.imageViewPhoto)
+        } else {
+            binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
+        }
 
         binding.textViewTitle.text = "Hi, " + user?.displayName.toString()
 

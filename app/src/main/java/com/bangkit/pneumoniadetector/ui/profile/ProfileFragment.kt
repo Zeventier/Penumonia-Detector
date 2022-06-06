@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import com.bangkit.pneumoniadetector.R
 import com.bangkit.pneumoniadetector.databinding.FragmentProfileBinding
 import com.bangkit.pneumoniadetector.ui.login.LoginActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -33,6 +36,14 @@ class ProfileFragment : Fragment() {
 
         val user = Firebase.auth.currentUser
 
+        if(user?.photoUrl != null) {
+            Glide.with(FragmentActivity())
+                .load(user.photoUrl)
+                .into(binding.imageViewPhoto)
+        } else {
+            binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
+        }
+
         binding.textViewName.text = user?.displayName.toString()
         binding.textViewEmail.text = user?.email.toString()
 
@@ -43,12 +54,16 @@ class ProfileFragment : Fragment() {
 
     private fun setupAction() {
         binding.btnLogout.setOnClickListener {
-            Log.e(TAG, "setupAction: tes", )
             Firebase.auth.signOut()
 
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
             activity?.finish()
+        }
+
+        binding.btnEditProfile.setOnClickListener {
+            val intent = Intent(activity, EditProfileActivity::class.java)
+            startActivity(intent)
         }
     }
 
