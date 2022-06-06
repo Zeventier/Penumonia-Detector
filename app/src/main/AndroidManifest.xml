@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.pneumoniadetector">
+    package="com.bangkit.pneumoniadetector">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -19,7 +19,7 @@
         android:theme="@style/Theme.PneumoniaDetector"
         tools:targetApi="31">
         <activity
-            android:name=".ui.landingpage.LandingPageActivity"
+            android:name="com.bangkit.pneumoniadetector.ui.landingpage.LandingPageActivity"
             android:exported="true"
             android:label="Landing Page">
             <intent-filter>
@@ -29,35 +29,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.camera.CameraActivity"
+            android:name="com.bangkit.pneumoniadetector.ui.camera.CameraActivity"
             android:exported="false"
             android:label="Camera"/>
         <activity
-            android:name=".ui.preview.PreviewActivity"
+            android:name="com.bangkit.pneumoniadetector.ui.preview.PreviewActivity"
             android:exported="false"
             android:label="Preview" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="com.bangkit.pneumoniadetector.ui.login.LoginActivity"
             android:exported="false"
             android:label="Login" />
         <activity
-            android:name=".ui.register.RegisterActivity"
+            android:name="com.bangkit.pneumoniadetector.ui.register.RegisterActivity"
             android:exported="false"
             android:label="Register" />
         <activity
-            android:name=".ui.detail.EditDetailActivity"
+            android:name="com.bangkit.pneumoniadetector.ui.detail.EditDetailActivity"
             android:exported="false"
             android:label="Edit Detail" />
         <activity
-            android:name=".ui.profile.EditProfileActivity"
+            android:name="com.bangkit.pneumoniadetector.ui.profile.EditProfileActivity"
             android:exported="false"
             android:label="Edit Profile" />
         <activity
-            android:name=".ui.detail.DetailActivity"
+            android:name="com.bangkit.pneumoniadetector.ui.detail.DetailActivity"
             android:exported="false"
             android:label="Detail" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.bangkit.pneumoniadetector.ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"></activity>
 
