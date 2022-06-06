@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,7 +28,6 @@
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="Prediction Histories"
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/rv_history"
@@ -42,7 +41,6 @@
             android:layout_marginTop="26dp"
             android:fontFamily="@font/montserrat_semibold"
             android:text="Hi, Beautiful"
-            android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imageView_photo"
             app:layout_constraintTop_toTopOf="parent" />
@@ -62,4 +60,4 @@
             tools:listitem="@layout/item_row_history"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</androidx.core.widget.NestedScrollView>

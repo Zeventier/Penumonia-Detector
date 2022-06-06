@@ -59,7 +59,7 @@
         <activity
             android:name="com.bangkit.pneumoniadetector.ui.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
 
         <meta-data
             android:name="preloaded_fonts"
