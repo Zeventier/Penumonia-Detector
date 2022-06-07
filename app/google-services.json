@@ -1,26 +1,19 @@
 {
   "project_info": {
     "project_number": "347343223443",
+    "firebase_url": "https://test-finalproject-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "test-finalproject",
     "storage_bucket": "test-finalproject.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:347343223443:android:7ca9cc856fcd269133ab66",
+        "mobilesdk_app_id": "1:347343223443:android:a5f5f2c54c050a2933ab66",
         "android_client_info": {
-          "package_name": "com.example.pneumoniadetector"
+          "package_name": "com.bangkit.pneumoniadetector"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "347343223443-90ts5uug54bqq6ocsjtdm7acejbpj430.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.pneumoniadetector",
-            "certificate_hash": "0061fc001d929288278fdbcf341a7d3c80fad5c3"
-          }
-        },
         {
           "client_id": "347343223443-9u9je4uv9mln6pt6neaogvp9a26595eq.apps.googleusercontent.com",
           "client_type": 3

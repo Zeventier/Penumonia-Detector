@@ -8,5 +8,6 @@
     <string name="camera_usage_not_granted">Camera usage is not possible because required permission is not granted by user</string>
     <string name="camera_usage_granted">Required permission is granted by user</string>
     <string name="failed_to_show_camera">Failed to show camera</string>
+    <string name="try_again">Try Again</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

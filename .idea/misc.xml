@@ -21,10 +21,16 @@
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.207" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.207" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_camera.xml" value="0.25" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_detail.xml" value="0.20416666666666666" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_edit_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_preview.xml" value="0.20416666666666666" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/fragment_history.xml" value="0.20416666666666666" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/item_loading.xml" value="0.19010416666666666" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/item_row_history.xml" value="0.33" />
       </map>
     </option>
   </component>
