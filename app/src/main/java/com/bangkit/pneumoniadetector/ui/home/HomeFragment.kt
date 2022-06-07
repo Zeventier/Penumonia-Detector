@@ -1,23 +1,20 @@
-package com.bangkit.pneumoniadetector.ui.home
+package com.example.pneumoniadetector.ui.home
 
 import android.Manifest
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
-import com.bangkit.pneumoniadetector.R
-import com.bangkit.pneumoniadetector.databinding.FragmentHomeBinding
-import com.bangkit.pneumoniadetector.tools.GeneralTools
-import com.bangkit.pneumoniadetector.ui.camera.CameraActivity
-import com.bumptech.glide.Glide
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pneumoniadetector.data.adapter.LoadingStateAdapter
+import com.example.pneumoniadetector.data.adapter.ResultListAdapter
+import com.example.pneumoniadetector.databinding.FragmentHomeBinding
+import com.example.pneumoniadetector.tools.GeneralTools
+import com.example.pneumoniadetector.ui.camera.CameraActivity
 
 class HomeFragment : Fragment() {
 
@@ -26,35 +23,16 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
+        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        val user = Firebase.auth.currentUser
-
-        if(user?.photoUrl != null) {
-            Glide.with(FragmentActivity())
-                .load(user.photoUrl)
-                .into(binding.imageViewPhoto)
-        } else {
-            when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-                Configuration.UI_MODE_NIGHT_NO -> {
-                    binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
-                } // Night mode is not active, we're using the light theme
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default_white)
-                } // Night mode is active, we're using dark theme
-            }
-        }
-
-        binding.textViewTitle.text = "Hi, " + user?.displayName.toString()
         //
 //        val textView: TextView = binding.textHome
 //        homeViewModel.text.observe(viewLifecycleOwner) {
@@ -67,7 +45,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // when click cardView, goes to CameraActivity when having camera permission granted
-        binding.imageViewButton.setOnClickListener { goesToCameraActivity() }
+        binding.materialCardView.setOnClickListener { goesToCameraActivity() }
+        setupRecent()
     }
 
     override fun onDestroyView() {
@@ -89,6 +68,20 @@ class HomeFragment : Fragment() {
         else{
             val intent = Intent(requireContext(), CameraActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    // method for set up history recycler view with list of pneumonia results
+    private fun setupRecent() {
+        binding?.rvRecent?.layoutManager = LinearLayoutManager(context)
+        val adapter = ResultListAdapter()
+        binding.rvRecent.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter{
+                adapter.retry()
+            }
+        )
+        homeViewModel.data.observe(viewLifecycleOwner){
+            adapter.submitData(lifecycle, it)
         }
     }
 
