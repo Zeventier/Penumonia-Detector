@@ -27,7 +27,7 @@ class HomeViewModel : ViewModel() {
                 maxSize = 3
             ),
             pagingSourceFactory = {
-                ResultPagingSource(webApiService)
+                ResultPagingSource(webApiService, 1)
             }
         ).liveData
     }

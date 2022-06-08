@@ -84,5 +84,4 @@ object FilePhotoTools {
 
         return file
     }
-
 }
