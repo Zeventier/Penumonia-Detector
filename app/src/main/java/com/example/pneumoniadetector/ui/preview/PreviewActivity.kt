@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.pneumoniadetector.databinding.ActivityPreviewBinding
+import com.example.pneumoniadetector.tools.FilePhotoTools
 import com.example.pneumoniadetector.ui.MainActivity
 import java.io.File
 
@@ -37,10 +38,10 @@ class PreviewActivity : AppCompatActivity() {
         // EXTRA_IS_PICTURE is a safety to know that a file was sent to here
         if(intent.getBooleanExtra(EXTRA_IS_PICTURE, false)){
 
-            val myFile = intent.getSerializableExtra(EXTRA_PICTURE) as File
+            getFile = intent.getSerializableExtra(EXTRA_PICTURE) as File
+            getFile = FilePhotoTools.reduceFileImage(getFile as File, 1000000)
 
-            getFile = myFile
-            val result = BitmapFactory.decodeFile(myFile.path)
+            val result = BitmapFactory.decodeFile((getFile as File).path)
 
             /*IMPORTANT!!
             IF THE IMAGE IS ROTATED, USES THIS
