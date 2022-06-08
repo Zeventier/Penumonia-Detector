@@ -1,10 +1,13 @@
-package com.bangkit.pneumoniadetector.tools
+package com.example.pneumoniadetector.tools
 
 import android.app.Application
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import com.bangkit.pneumoniadetector.R
+import com.example.pneumoniadetector.R
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -58,4 +61,28 @@ object FilePhotoTools {
             )
         }
     }
+
+    // A method for reducing image file size
+    // example: maxSizeByte = 1000000 (Byte) -> 1MB max size for file
+    // default maxSizeByte = 1000000 (Byte) -> 1MB
+    fun reduceFileImage(file: File, maxSizeByte: Int = 1000000): File{
+
+        val bitmap = BitmapFactory.decodeFile(file.path)
+        var compressQuality = 100
+        var streamLength: Int
+
+        if(maxSizeByte > 0){
+            do{
+                val bmpStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
+                val bmpPickByteArray = bmpStream.toByteArray()
+                streamLength = bmpPickByteArray.size
+                compressQuality -= 5
+            } while (streamLength > maxSizeByte)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
+        }
+
+        return file
+    }
+
 }

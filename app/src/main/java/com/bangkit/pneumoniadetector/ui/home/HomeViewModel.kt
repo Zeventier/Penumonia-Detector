@@ -18,11 +18,13 @@ class HomeViewModel : ViewModel() {
 
     private val webApiService = ApiConfig.getApiService()
 
+    //Limiting item showed in rvRecent by only 3 item
     fun resultsData(): LiveData<PagingData<ResultItem>>{
         return Pager(
             config = PagingConfig(
                 pageSize = 5,
-                initialLoadSize = 5
+                initialLoadSize = 5,
+                maxSize = 3
             ),
             pagingSourceFactory = {
                 ResultPagingSource(webApiService)
