@@ -5,7 +5,9 @@ import androidx.paging.PagingState
 import com.example.pneumoniadetector.data.remote.response.ResultItem
 import com.example.pneumoniadetector.data.remote.retrofit.ApiService
 
-class ResultPagingSource (private val apiService: ApiService): PagingSource<Int, ResultItem>() {
+// if limitPage is more than 0 then the page is limited to how many limitPage inputed
+class ResultPagingSource (private val apiService: ApiService, var limitPage: Int? = 0)
+    : PagingSource<Int, ResultItem>() {
 
     private companion object{
         const val INITIAL_PAGE_INDEX = 1
@@ -26,7 +28,7 @@ class ResultPagingSource (private val apiService: ApiService): PagingSource<Int,
             LoadResult.Page(
                 data = responseData as List<ResultItem>,
                 prevKey = if(page == INITIAL_PAGE_INDEX) null else page - 1,
-                nextKey = if(responseData.isNullOrEmpty()) null else page + 1
+                nextKey = if(responseData.isNullOrEmpty() || page == limitPage) null else page + 1
             )
         }
         catch (exception: Exception){
