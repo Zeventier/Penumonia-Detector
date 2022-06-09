@@ -5,7 +5,20 @@ import numpy as np
 from PIL import Image
 from keras.preprocessing import image
 
-model = tf.keras.models.load_model('saved_model/model.h5')
+from google.cloud import storage
+
+# Enable Cloud Storage
+client = storage.Client()
+
+# Reference an existing bucket.
+bucket = client.get_bucket('pristine-sphere-343506.appspot.com')
+
+# Download a file from your bucket.
+model_ml = bucket.get_blob('ML_Model/model.h5')
+model_ml.download_to_filename('model.h5')
+
+
+model = tf.keras.models.load_model(model_ml)
 model.compile(
     optimizer='adam',
     loss='categorical_crossentropy',
