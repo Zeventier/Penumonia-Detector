@@ -24,6 +24,8 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         // Initialize Firebase Auth
         auth = Firebase.auth
 

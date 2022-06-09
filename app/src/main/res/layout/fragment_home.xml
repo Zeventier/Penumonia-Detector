@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,8 +33,7 @@
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView_photo"
-            app:strokeColor="@color/black">
+            app:layout_constraintTop_toBottomOf="@+id/imageView_photo">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -48,7 +47,6 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Predict your chest x-ray image"
-                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +60,6 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/montserrat_semibold"
                     android:text="Get your pneumonia diagnose anytime anywhere here."
-                    android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_titleCard" />
 
@@ -89,7 +86,6 @@
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="Recent Scan"
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,10 +109,9 @@
             android:layout_marginTop="26dp"
             android:fontFamily="@font/montserrat_semibold"
             android:text="Hi, Beautiful"
-            android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imageView_photo"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,188 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailActivity">
 
-    <ImageView
-        android:id="@+id/imageView_image"
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/textView_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/montserrat_semibold"
-        android:text="Your Prediction"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_image" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="13dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_title"
-        tools:cardCornerRadius="10dp">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/imageView_image"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Your Prediction"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_image" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
-            android:layout_height="253dp"
-            android:padding="8dp"
-            android:theme="@style/Theme.Material3.DayNight">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="13dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_title"
+            tools:cardCornerRadius="10dp">
 
-            <TextView
-                android:id="@+id/textView_description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_accuracy"
-                tools:text="Description" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="253dp"
+                android:padding="8dp"
+                android:theme="@style/Theme.Material3.DayNight">
 
-            <TextView
-                android:id="@+id/textView_nameContent"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toEndOf="@+id/textView_colon_1"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Name" />
+                <TextView
+                    android:id="@+id/textView_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_accuracy"
+                    tools:text="Description" />
 
-            <TextView
-                android:id="@+id/textView_predictionContent"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toEndOf="@+id/textView_colon_2"
-                app:layout_constraintTop_toBottomOf="@+id/textView_nameContent"
-                tools:text="Prediction" />
+                <TextView
+                    android:id="@+id/textView_nameContent"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/textView_colon_1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Name" />
 
-            <TextView
-                android:id="@+id/textView_accuracyContent"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toEndOf="@+id/textView_colon_3"
-                app:layout_constraintTop_toBottomOf="@+id/textView_predictionContent"
-                tools:text="Accuracy" />
+                <TextView
+                    android:id="@+id/textView_predictionContent"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/textView_colon_2"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_nameContent"
+                    tools:text="Prediction" />
 
-            <TextView
-                android:id="@+id/textView_accuracy"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_prediction"
-                tools:text="Accuracy" />
+                <TextView
+                    android:id="@+id/textView_accuracyContent"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/textView_colon_3"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_predictionContent"
+                    tools:text="Accuracy" />
 
-            <TextView
-                android:id="@+id/textView_name"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Name" />
+                <TextView
+                    android:id="@+id/textView_accuracy"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_prediction"
+                    tools:text="Accuracy" />
 
-            <TextView
-                android:id="@+id/textView_prediction"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_name"
-                tools:text="Prediction" />
+                <TextView
+                    android:id="@+id/textView_name"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Name" />
 
-            <TextView
-                android:id="@+id/textView_colon_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text=":"
-                app:layout_constraintStart_toEndOf="@+id/textView_name"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textView_prediction"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_name"
+                    tools:text="Prediction" />
 
-            <TextView
-                android:id="@+id/textView_colon_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text=":"
-                app:layout_constraintStart_toEndOf="@+id/textView_prediction"
-                app:layout_constraintTop_toBottomOf="@+id/textView_colon_1" />
+                <TextView
+                    android:id="@+id/textView_colon_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text=":"
+                    app:layout_constraintStart_toEndOf="@+id/textView_name"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView_colon_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text=":"
-                app:layout_constraintStart_toEndOf="@+id/textView_accuracy"
-                app:layout_constraintTop_toBottomOf="@+id/textView_colon_2" />
+                <TextView
+                    android:id="@+id/textView_colon_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text=":"
+                    app:layout_constraintStart_toEndOf="@+id/textView_prediction"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_colon_1" />
+
+                <TextView
+                    android:id="@+id/textView_colon_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text=":"
+                    app:layout_constraintStart_toEndOf="@+id/textView_accuracy"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_colon_2" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

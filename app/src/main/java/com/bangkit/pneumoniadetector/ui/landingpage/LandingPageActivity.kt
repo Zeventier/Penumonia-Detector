@@ -20,6 +20,8 @@ class LandingPageActivity : AppCompatActivity() {
         binding = ActivityLandingPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         setupAction()
     }
 
