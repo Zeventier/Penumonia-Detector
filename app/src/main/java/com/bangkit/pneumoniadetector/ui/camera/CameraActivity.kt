@@ -32,10 +32,10 @@ class CameraActivity : AppCompatActivity() {
 
         // set btn_back and btn_flash icon color to black
         binding.btnBack.apply {
-            setIconTintResource(R.color.black)
+            setIconTintResource(R.color.white)
             setOnClickListener { finish() }
         }
-        binding.btnFlash.setIconTintResource(R.color.black)
+        binding.btnFlash.setIconTintResource(R.color.white)
 
 
         binding.btnTakePhoto.setOnClickListener { takePhoto() }

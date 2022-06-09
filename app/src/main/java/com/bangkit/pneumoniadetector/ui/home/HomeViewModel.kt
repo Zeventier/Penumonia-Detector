@@ -24,7 +24,6 @@ class HomeViewModel : ViewModel() {
             config = PagingConfig(
                 pageSize = 5,
                 initialLoadSize = 5,
-                maxSize = 3
             ),
             pagingSourceFactory = {
                 ResultPagingSource(webApiService, 1)
