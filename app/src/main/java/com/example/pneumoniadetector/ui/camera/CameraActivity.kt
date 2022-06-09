@@ -5,10 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.Preview
+import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.example.pneumoniadetector.R
@@ -21,6 +18,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var isFlashLightOn: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +62,22 @@ class CameraActivity : AppCompatActivity() {
 
             try{
                 cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
+                val cam = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
+
+                binding.btnFlash.setOnClickListener {
+                    if( cam.cameraInfo.hasFlashUnit() ){
+                        cam.cameraControl.enableTorch(!isFlashLightOn)
+                        binding.btnFlash.setIconTintResource(if (isFlashLightOn) R.color.white_2 else R.color.red_1)
+                        isFlashLightOn = !isFlashLightOn
+                    }
+                    else
+                        Toast.makeText(
+                            this@CameraActivity,
+                            "Your phone doesn't have a flashlight feature",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                }
             }
             catch(exc: Exception){
                 Toast.makeText(this@CameraActivity, getString(R.string.failed_to_show_camera), Toast.LENGTH_SHORT)
