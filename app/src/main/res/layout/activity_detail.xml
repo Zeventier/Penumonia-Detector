@@ -64,12 +64,12 @@
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_accuracy"
+                app:layout_constraintTop_toBottomOf="@+id/textView_accuracyContent"
                 tools:text="Description" />
 
             <TextView
                 android:id="@+id/textView_nameContent"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -79,11 +79,12 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/textView_colon_1"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Name" />
 
             <TextView
                 android:id="@+id/textView_predictionContent"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -93,11 +94,12 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/textView_colon_2"
                 app:layout_constraintTop_toBottomOf="@+id/textView_nameContent"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Prediction" />
 
             <TextView
                 android:id="@+id/textView_accuracyContent"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -107,6 +109,7 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/textView_colon_3"
                 app:layout_constraintTop_toBottomOf="@+id/textView_predictionContent"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Accuracy" />
 
             <TextView
@@ -114,13 +117,12 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_prediction"
+                app:layout_constraintTop_toTopOf="@+id/textView_accuracyContent"
                 tools:text="Accuracy" />
 
             <TextView
@@ -142,13 +144,12 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_name"
+                app:layout_constraintTop_toTopOf="@id/textView_predictionContent"
                 tools:text="Prediction" />
 
             <TextView
@@ -166,20 +167,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:text=":"
                 app:layout_constraintStart_toEndOf="@+id/textView_prediction"
-                app:layout_constraintTop_toBottomOf="@+id/textView_colon_1" />
+                app:layout_constraintTop_toTopOf="@id/textView_predictionContent"/>
 
             <TextView
                 android:id="@+id/textView_colon_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:text=":"
                 app:layout_constraintStart_toEndOf="@+id/textView_accuracy"
-                app:layout_constraintTop_toBottomOf="@+id/textView_colon_2" />
+                app:layout_constraintTop_toTopOf="@+id/textView_accuracyContent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

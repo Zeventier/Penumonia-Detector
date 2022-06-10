@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.pneumoniadetector.databinding.FragmentProfileBinding
 import com.example.pneumoniadetector.ui.login.LoginActivity
 import com.google.firebase.auth.ktx.auth
@@ -45,6 +46,10 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
             activity?.finish()
         }
+
+        Glide.with(requireContext())
+            .load("https://media.suara.com/pictures/653x366/2020/12/08/91579-david-gadgetin.jpg")
+            .into(binding.imageViewPhoto)
     }
 
     override fun onDestroyView() {

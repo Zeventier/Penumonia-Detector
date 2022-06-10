@@ -10,5 +10,7 @@
     <string name="failed_to_show_camera">Failed to show camera</string>
     <string name="try_again">Try Again</string>
     <string name="make_sure_the_image_is_inside_white_box">Make sure the image is inside white box</string>
+    <string name="edit_result">Edit Result</string>
+    <string name="save_result">Save Result</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

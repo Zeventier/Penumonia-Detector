@@ -1,6 +1,8 @@
 package com.example.pneumoniadetector.data.remote.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class ResultResponse(
     @field:SerializedName("error")
@@ -13,26 +15,28 @@ data class ResultResponse(
     val listStory: List<ResultItem>? = null
 )
 
+@Parcelize
 data class ResultItem(
+
     @field:SerializedName("id")
-    val id: String,
+    var id: String?,
 
     @field:SerializedName("name")
-    val name: String,
+    var name: String?,
 
     @field:SerializedName("pneumoniaType")
-    val pneumoniaType: String,
+    var pneumoniaType: String?,
 
     @field:SerializedName("accuracy")
-    val accuracy: String,
+    var accuracy: String?,
 
     @field:SerializedName("createdAt")
-    val createdAt: String,
+    var createdAt: String?,
 
     @field:SerializedName("description")
-    val description: String,
+    var description: String?,
 
     @field:SerializedName("photoUrl")
-    val photoUrl: String
-)
+    var photoUrl: String?
+): Parcelable
 
