@@ -12,6 +12,17 @@ import com.example.pneumoniadetector.databinding.ItemRowHistoryBinding
 class ResultListAdapter:
     PagingDataAdapter<ResultItem, ResultListAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    interface OnItemClickCallback {
+        var data: ResultItem?
+        fun onItemClicked()
+    }
+
+    fun setOnClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     class MyViewHolder(private val binding: ItemRowHistoryBinding):
         RecyclerView.ViewHolder(binding.root) {
 
@@ -36,6 +47,12 @@ class ResultListAdapter:
         val data = getItem(position)
         if (data != null)
             holder.bind(data)
+
+        holder.itemView.setOnClickListener {
+            val item: ResultItem? = getItem(position)
+            onItemClickCallback.data = item
+            onItemClickCallback.onItemClicked()
+        }
     }
 
 

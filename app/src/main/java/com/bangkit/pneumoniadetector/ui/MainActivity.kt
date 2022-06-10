@@ -1,6 +1,7 @@
 package com.bangkit.pneumoniadetector.ui
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.red_1)))
 
         // Initialize Firebase Auth
         auth = Firebase.auth

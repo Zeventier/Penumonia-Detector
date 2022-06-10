@@ -32,4 +32,9 @@ class HomeViewModel : ViewModel() {
     }
 
     val data:LiveData<PagingData<ResultItem>> = resultsData().cachedIn(viewModelScope)
+
+    // Dummy data
+    val listDataTemp: List<ResultItem> =
+        listOf(ResultItem("asId", "asName", "asPneumoniaType", "asAccuracy99.99%", "as31FEB","asIniDeskripsi", "https://media.suara.com/pictures/653x366/2020/12/08/91579-david-gadgetin.jpg"))
+    val pagingTemp: PagingData<ResultItem> = PagingData.from(listDataTemp)
 }
