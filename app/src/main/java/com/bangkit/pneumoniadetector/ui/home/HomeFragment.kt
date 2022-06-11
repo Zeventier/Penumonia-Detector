@@ -2,6 +2,7 @@ package com.bangkit.pneumoniadetector.ui.home
 
 import android.Manifest
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,14 +35,14 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        val homeViewModel =
+            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
@@ -52,7 +53,14 @@ class HomeFragment : Fragment() {
                 .load(user.photoUrl)
                 .into(binding.imageViewPhoto)
         } else {
-            binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
+            when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
+                } // Night mode is not active, we're using the light theme
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default_white)
+                } // Night mode is active, we're using dark theme
+            }
         }
 
         binding.textViewTitle.text = "Hi, " + user?.displayName.toString()
@@ -68,12 +76,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // when click cardView, goes to CameraActivity when having camera permission granted
-        binding.materialCardView.setOnClickListener { goesToCameraActivity() }
-        setupRecent()
+        binding.imageViewButton.setOnClickListener { goesToCameraActivity() }
 
-        Glide.with(requireContext())
-            .load("https://media.suara.com/pictures/653x366/2020/12/08/91579-david-gadgetin.jpg")
-            .into(binding.imageViewPhoto)
+        setupRecent()
     }
 
     override fun onDestroyView() {

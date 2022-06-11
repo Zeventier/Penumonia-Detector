@@ -1,5 +1,6 @@
 package com.bangkit.pneumoniadetector.ui.history
 
+import android.content.res.Configuration
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,7 +46,14 @@ class HistoryFragment : Fragment() {
                 .load(user.photoUrl)
                 .into(binding.imageViewPhoto)
         } else {
-            binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
+            when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
+                } // Night mode is not active, we're using the light theme
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default_white)
+                } // Night mode is active, we're using dark theme
+            }
         }
 
         binding.textViewTitle.text = "Hi, " + user?.displayName.toString()

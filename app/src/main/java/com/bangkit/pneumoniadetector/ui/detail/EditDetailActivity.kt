@@ -1,9 +1,11 @@
 package com.bangkit.pneumoniadetector.ui.detail
 
 import android.content.Intent
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
@@ -13,11 +15,22 @@ import com.example.pneumoniadetector.R
 import com.example.pneumoniadetector.data.remote.response.ResultItem
 import com.example.pneumoniadetector.databinding.ActivityEditDetailBinding
 import com.bangkit.pneumoniadetector.R
+import com.bangkit.pneumoniadetector.data.remote.response.History
+import com.bangkit.pneumoniadetector.databinding.ActivityEditDetailBinding
+import com.bangkit.pneumoniadetector.databinding.ActivityMainBinding
+import com.bangkit.pneumoniadetector.ui.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class EditDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditDetailBinding
     private lateinit var data: ResultItem
+    private lateinit var db: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +41,35 @@ class EditDetailActivity : AppCompatActivity() {
         data = intent.getParcelableExtra<ResultItem>(EXTRA_DATA_BEFORE_EDIT) as ResultItem
         setupData(data)
 
+        db = Firebase.database
+
+        val historyRef = db.reference.child("history")
+
+        //Testing Realtime Database
+//        binding.apply {
+//            textViewPredictionContent.text = "Pneumonia Covid"
+//            textViewAccuracyContent.text = "99%"
+//            textViewDescription.text = "Lorem Ipsum"
+//        }
+
+//        binding.btnSave.setOnClickListener {
+//            val history = History(
+//                "asdaw",
+//                "asdwa",
+//                "awdas",
+//                "awdasd",
+//                "",
+//                Firebase.auth.currentUser?.uid.toString()
+//            )
+//
+//            historyRef.push().setValue(history) { error, _ ->
+//                if (error != null) {
+//                    Toast.makeText(this, "Error" + error.message, Toast.LENGTH_SHORT).show()
+//                } else {
+//                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
     }
 
     private fun setupData(data: ResultItem) {

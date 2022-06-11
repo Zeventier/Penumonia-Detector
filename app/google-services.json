@@ -1,23 +1,24 @@
 {
   "project_info": {
     "project_number": "427927402673",
+    "firebase_url": "https://pristine-sphere-343506-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "pristine-sphere-343506",
     "storage_bucket": "pristine-sphere-343506.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:427927402673:android:f2e774d791423265ec0a90",
+        "mobilesdk_app_id": "1:427927402673:android:7f337adf71821ecbec0a90",
         "android_client_info": {
-          "package_name": "com.bangkit.pneumoniadetector"
+          "package_name": "com.example.pneumoniadetector"
         }
       },
       "oauth_client": [
         {
-          "client_id": "427927402673-r77fv0non0kskau47ab91iarrc8jt2n4.apps.googleusercontent.com",
+          "client_id": "427927402673-7v6d1k9s6qp0rpcqicr265il9mdsn857.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.bangkit.pneumoniadetector",
+            "package_name": "com.example.pneumoniadetector",
             "certificate_hash": "0061fc001d929288278fdbcf341a7d3c80fad5c3"
           }
         },
@@ -28,36 +29,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCbkS7rKgns1JVg1NBdYUpxlf8pGCj9WEQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "427927402673-6rfs79lu7ffgnkotrcd5bq9h59apntjv.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:427927402673:android:185560ea2e9883c3ec0a90",
-        "android_client_info": {
-          "package_name": "com.example.pneumoniadetector"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "427927402673-6rfs79lu7ffgnkotrcd5bq9h59apntjv.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCbkS7rKgns1JVg1NBdYUpxlf8pGCj9WEQ"
+          "current_key": "AIzaSyBZaGaLeejiZk0e81mFh8O7OpkMk7j1XKk"
         }
       ],
       "services": {
