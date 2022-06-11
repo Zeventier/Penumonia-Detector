@@ -161,7 +161,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text=":"
-                    app:layout_constraintStart_toEndOf="@+id/textView_accuracy"
+                    app:layout_constraintStart_toEndOf="@+id/textView_name"
                     app:layout_constraintTop_toBottomOf="@+id/textView_colon_2" />
 
                 <EditText
@@ -175,15 +175,6 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/textView_colon_1"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/btnSave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

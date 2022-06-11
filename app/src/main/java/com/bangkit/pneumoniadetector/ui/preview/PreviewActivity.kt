@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bangkit.pneumoniadetector.databinding.ActivityPreviewBinding
 import com.bangkit.pneumoniadetector.ui.MainActivity
-import com.example.pneumoniadetector.databinding.ActivityPreviewBinding
-import com.example.pneumoniadetector.tools.FilePhotoTools
-import com.example.pneumoniadetector.ui.MainActivity
+import com.bangkit.pneumoniadetector.tools.FilePhotoTools
 import java.io.File
 
 class PreviewActivity : AppCompatActivity() {

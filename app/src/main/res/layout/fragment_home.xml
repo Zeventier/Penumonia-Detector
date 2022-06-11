@@ -40,8 +40,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/cardview_background">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/textView_titleCard"
@@ -57,7 +56,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView_accuracy"
+                    android:id="@+id/textView_description"
                     android:layout_width="190dp"
                     android:layout_height="37dp"
                     android:layout_marginStart="16dp"

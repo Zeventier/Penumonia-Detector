@@ -19,14 +19,10 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.example.pneumoniadetector.data.adapter.LoadingStateAdapter
-import com.example.pneumoniadetector.data.adapter.ResultListAdapter
-import com.example.pneumoniadetector.data.remote.response.ResultItem
-import com.example.pneumoniadetector.databinding.FragmentHomeBinding
-import com.example.pneumoniadetector.tools.GeneralTools
-import com.example.pneumoniadetector.ui.camera.CameraActivity
-import com.example.pneumoniadetector.ui.detail.DetailActivity
+import com.bangkit.pneumoniadetector.data.adapter.LoadingStateAdapter
+import com.bangkit.pneumoniadetector.data.adapter.ResultListAdapter
+import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
+import com.bangkit.pneumoniadetector.ui.detail.DetailActivity
 
 class HomeFragment : Fragment() {
 
@@ -35,6 +31,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +42,17 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        //
+//        val textView: TextView = binding.textHome
+//        homeViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val user = Firebase.auth.currentUser
 
@@ -63,22 +71,12 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.textViewTitle.text = "Hi, " + user?.displayName.toString()
-        //
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding.textViewName.text = "Hi, " + user?.displayName.toString()
 
         // when click cardView, goes to CameraActivity when having camera permission granted
         binding.imageViewButton.setOnClickListener { goesToCameraActivity() }
 
-        setupRecent()
+        //setupRecent()
     }
 
     override fun onDestroyView() {
@@ -87,7 +85,7 @@ class HomeFragment : Fragment() {
     }
 
     // Method for clicking materialCardView that will goes to CameraActivity when permission granted
-    fun goesToCameraActivity() {
+    private fun goesToCameraActivity() {
 
         // check camera permission
         if(!GeneralTools.allPermissionGranted(REQUIRED_CAMERA_PERMISSION, requireContext())){
@@ -105,7 +103,7 @@ class HomeFragment : Fragment() {
 
     // method for set up history recycler view with list of pneumonia results
     private fun setupRecent() {
-        binding?.rvRecent?.layoutManager = LinearLayoutManager(context)
+        binding.rvRecent.layoutManager = LinearLayoutManager(context)
         val adapter = ResultListAdapter()
         binding.rvRecent.adapter = adapter.withLoadStateFooter(
             footer = LoadingStateAdapter{

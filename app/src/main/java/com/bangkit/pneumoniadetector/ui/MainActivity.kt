@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.red_1)))
+        //supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.red_1)))
 
         // Initialize Firebase Auth
         auth = Firebase.auth

@@ -12,13 +12,11 @@ import com.bangkit.pneumoniadetector.R
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.pneumoniadetector.data.adapter.LoadingStateAdapter
-import com.example.pneumoniadetector.data.adapter.ResultListAdapter
-import com.example.pneumoniadetector.data.remote.response.ResultItem
-import com.example.pneumoniadetector.databinding.FragmentHistoryBinding
-import com.example.pneumoniadetector.ui.detail.DetailActivity
+import com.bangkit.pneumoniadetector.data.adapter.LoadingStateAdapter
+import com.bangkit.pneumoniadetector.data.adapter.ResultListAdapter
+import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
 import com.bangkit.pneumoniadetector.databinding.FragmentHistoryBinding
-import com.bumptech.glide.Glide
+import com.bangkit.pneumoniadetector.ui.detail.DetailActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -39,6 +37,12 @@ class HistoryFragment : Fragment() {
         historyViewModel = ViewModelProvider(this)[HistoryViewModel::class.java]
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val user = Firebase.auth.currentUser
 
         if(user?.photoUrl != null) {
@@ -56,18 +60,13 @@ class HistoryFragment : Fragment() {
             }
         }
 
-        binding.textViewTitle.text = "Hi, " + user?.displayName.toString()
+        binding.textViewName.text = "Hi, " + user?.displayName.toString()
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         setupHistory()
 
-        Glide.with(requireContext())
-            .load("https://media.suara.com/pictures/653x366/2020/12/08/91579-david-gadgetin.jpg")
-            .into(binding.imageViewPhoto)
+//        Glide.with(requireContext())
+//            .load("https://media.suara.com/pictures/653x366/2020/12/08/91579-david-gadgetin.jpg")
+//            .into(binding.imageViewPhoto)
     }
 
     // method for set up history recycler view with list of pneumonia results

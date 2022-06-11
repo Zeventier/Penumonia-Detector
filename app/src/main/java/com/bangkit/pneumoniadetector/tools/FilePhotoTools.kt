@@ -1,10 +1,10 @@
-package com.example.pneumoniadetector.tools
+package com.bangkit.pneumoniadetector.tools
 
 import android.app.Application
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import com.example.pneumoniadetector.R
+import com.bangkit.pneumoniadetector.R
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream

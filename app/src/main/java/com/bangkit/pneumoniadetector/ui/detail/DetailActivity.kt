@@ -8,9 +8,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
-import com.example.pneumoniadetector.data.remote.response.ResultItem
-import com.example.pneumoniadetector.databinding.ActivityCameraBinding
-import com.example.pneumoniadetector.databinding.ActivityDetailBinding
+import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
+import com.bangkit.pneumoniadetector.databinding.ActivityDetailBinding
 import com.bangkit.pneumoniadetector.R
 
 class DetailActivity : AppCompatActivity() {

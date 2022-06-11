@@ -1,4 +1,4 @@
-package com.example.pneumoniadetector.data.adapter
+package com.bangkit.pneumoniadetector.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pneumoniadetector.databinding.ItemLoadingBinding
+import com.bangkit.pneumoniadetector.databinding.ItemLoadingBinding
 
 class LoadingStateAdapter(private val retry: () -> Unit) :
     LoadStateAdapter<LoadingStateAdapter.LoadingStateViewHolder>() {

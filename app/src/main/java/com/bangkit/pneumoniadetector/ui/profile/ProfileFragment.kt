@@ -12,11 +12,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bangkit.pneumoniadetector.R
 import com.bumptech.glide.Glide
-import com.example.pneumoniadetector.databinding.FragmentProfileBinding
-import com.example.pneumoniadetector.ui.login.LoginActivity
 import com.bangkit.pneumoniadetector.databinding.FragmentProfileBinding
 import com.bangkit.pneumoniadetector.ui.login.LoginActivity
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -37,6 +34,12 @@ class ProfileFragment : Fragment() {
             ViewModelProvider(this)[ProfileViewModel::class.java]
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val user = Firebase.auth.currentUser
 
@@ -59,8 +62,6 @@ class ProfileFragment : Fragment() {
         binding.textViewEmail.text = user?.email.toString()
 
         setupAction()
-
-        return binding.root
     }
 
     private fun setupAction() {
@@ -77,9 +78,9 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-        Glide.with(requireContext())
-            .load("https://media.suara.com/pictures/653x366/2020/12/08/91579-david-gadgetin.jpg")
-            .into(binding.imageViewPhoto)
+//        Glide.with(requireContext())
+//            .load("https://media.suara.com/pictures/653x366/2020/12/08/91579-david-gadgetin.jpg")
+//            .into(binding.imageViewPhoto)
     }
 
     override fun onDestroyView() {

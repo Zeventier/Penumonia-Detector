@@ -1,7 +1,6 @@
 package com.bangkit.pneumoniadetector.ui.detail
 
 import android.content.Intent
-import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,19 +8,10 @@ import android.widget.Toast
 import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.example.pneumoniadetector.R
-import com.example.pneumoniadetector.data.remote.response.ResultItem
-import com.example.pneumoniadetector.databinding.ActivityEditDetailBinding
 import com.bangkit.pneumoniadetector.R
-import com.bangkit.pneumoniadetector.data.remote.response.History
+import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
 import com.bangkit.pneumoniadetector.databinding.ActivityEditDetailBinding
-import com.bangkit.pneumoniadetector.databinding.ActivityMainBinding
-import com.bangkit.pneumoniadetector.ui.login.LoginActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase

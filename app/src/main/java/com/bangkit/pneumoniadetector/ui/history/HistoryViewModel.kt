@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
-import com.example.pneumoniadetector.data.adapter.ResultPagingSource
-import com.example.pneumoniadetector.data.remote.response.ResultItem
-import com.example.pneumoniadetector.data.remote.retrofit.ApiConfig
+import com.bangkit.pneumoniadetector.data.adapter.ResultPagingSource
+import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
+import com.bangkit.pneumoniadetector.data.remote.retrofit.ApiConfig
 
 class HistoryViewModel : ViewModel() {
 

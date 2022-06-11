@@ -174,7 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text=":"
-                    app:layout_constraintStart_toEndOf="@+id/textView_accuracy"
+                    app:layout_constraintStart_toEndOf="@+id/textView_name"
                     app:layout_constraintTop_toTopOf="@+id/textView_accuracyContent" />
 
 

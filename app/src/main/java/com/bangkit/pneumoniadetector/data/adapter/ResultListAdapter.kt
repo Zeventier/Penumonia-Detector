@@ -1,4 +1,4 @@
-package com.example.pneumoniadetector.data.adapter
+package com.bangkit.pneumoniadetector.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.pneumoniadetector.data.remote.response.ResultItem
-import com.example.pneumoniadetector.databinding.ItemRowHistoryBinding
+import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
+import com.bangkit.pneumoniadetector.databinding.ItemRowHistoryBinding
 
 class ResultListAdapter:
     PagingDataAdapter<ResultItem, ResultListAdapter.MyViewHolder>(DIFF_CALLBACK) {

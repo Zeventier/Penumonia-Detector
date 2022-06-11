@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:427927402673:android:7f337adf71821ecbec0a90",
         "android_client_info": {
-          "package_name": "com.example.pneumoniadetector"
+          "package_name": "com.bangkit.pneumoniadetector"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "427927402673-7v6d1k9s6qp0rpcqicr265il9mdsn857.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.pneumoniadetector",
+            "package_name": "com.bangkit.pneumoniadetector",
             "certificate_hash": "0061fc001d929288278fdbcf341a7d3c80fad5c3"
           }
         },

@@ -1,9 +1,9 @@
-package com.example.pneumoniadetector.data.adapter
+package com.bangkit.pneumoniadetector.data.adapter
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.pneumoniadetector.data.remote.response.ResultItem
-import com.example.pneumoniadetector.data.remote.retrofit.ApiService
+import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
+import com.bangkit.pneumoniadetector.data.remote.retrofit.ApiService
 
 // if limitPage is more than 0 then the page is limited to how many limitPage inputed
 class ResultPagingSource (private val apiService: ApiService, var limitPage: Int? = 0)
