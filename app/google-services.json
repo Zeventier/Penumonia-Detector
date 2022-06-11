@@ -1,20 +1,21 @@
 {
   "project_info": {
-    "project_number": "347343223443",
-    "project_id": "test-finalproject",
-    "storage_bucket": "test-finalproject.appspot.com"
+    "project_number": "427927402673",
+    "firebase_url": "https://pristine-sphere-343506-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "pristine-sphere-343506",
+    "storage_bucket": "pristine-sphere-343506.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:347343223443:android:7ca9cc856fcd269133ab66",
+        "mobilesdk_app_id": "1:427927402673:android:7f337adf71821ecbec0a90",
         "android_client_info": {
           "package_name": "com.example.pneumoniadetector"
         }
       },
       "oauth_client": [
         {
-          "client_id": "347343223443-90ts5uug54bqq6ocsjtdm7acejbpj430.apps.googleusercontent.com",
+          "client_id": "427927402673-7v6d1k9s6qp0rpcqicr265il9mdsn857.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.pneumoniadetector",
@@ -22,20 +23,20 @@
           }
         },
         {
-          "client_id": "347343223443-9u9je4uv9mln6pt6neaogvp9a26595eq.apps.googleusercontent.com",
+          "client_id": "427927402673-6rfs79lu7ffgnkotrcd5bq9h59apntjv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC7ylpltcSF_kNkNWc9ccCLDEpe0pEae10"
+          "current_key": "AIzaSyBZaGaLeejiZk0e81mFh8O7OpkMk7j1XKk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "347343223443-9u9je4uv9mln6pt6neaogvp9a26595eq.apps.googleusercontent.com",
+              "client_id": "427927402673-6rfs79lu7ffgnkotrcd5bq9h59apntjv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

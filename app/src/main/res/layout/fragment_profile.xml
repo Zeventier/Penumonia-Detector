@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".ui.profile.ProfileFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_logout"
@@ -47,7 +48,7 @@
             android:id="@+id/imageView_photo"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginTop="128dp"
+            android:layout_marginTop="110dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -79,7 +80,6 @@
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/montserrat_semibold"
                     android:text="Name"
-                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -115,7 +115,6 @@
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/montserrat_semibold"
                     android:text="Email"
-                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -125,4 +124,4 @@
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</ScrollView>
