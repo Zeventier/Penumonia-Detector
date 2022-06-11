@@ -2,6 +2,7 @@ package com.bangkit.pneumoniadetector.ui.home
 
 import android.Manifest
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,7 +44,14 @@ class HomeFragment : Fragment() {
                 .load(user.photoUrl)
                 .into(binding.imageViewPhoto)
         } else {
-            binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
+            when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
+                } // Night mode is not active, we're using the light theme
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default_white)
+                } // Night mode is active, we're using dark theme
+            }
         }
 
         binding.textViewTitle.text = "Hi, " + user?.displayName.toString()
@@ -59,7 +67,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // when click cardView, goes to CameraActivity when having camera permission granted
-        binding.materialCardView.setOnClickListener { goesToCameraActivity() }
+        binding.imageViewButton.setOnClickListener { goesToCameraActivity() }
     }
 
     override fun onDestroyView() {

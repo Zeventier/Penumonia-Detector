@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -19,6 +20,10 @@
         android:theme="@style/Theme.PneumoniaDetector"
         tools:targetApi="31">
         <activity
+            android:name="com.bangkit.pneumoniadetector.ui.camera.CameraProfileActivity"
+            android:exported="false"
+            android:label="Camera Photo Profile"/>
+        <activity
             android:name="com.bangkit.pneumoniadetector.ui.landingpage.LandingPageActivity"
             android:exported="true"
             android:label="Landing Page">
@@ -31,7 +36,7 @@
         <activity
             android:name="com.bangkit.pneumoniadetector.ui.camera.CameraActivity"
             android:exported="false"
-            android:label="Camera"/>
+            android:label="Camera" />
         <activity
             android:name="com.bangkit.pneumoniadetector.ui.preview.PreviewActivity"
             android:exported="false"
@@ -58,6 +63,7 @@
             android:label="Detail" />
         <activity
             android:name="com.bangkit.pneumoniadetector.ui.MainActivity"
+            android:configChanges="uiMode"
             android:exported="true"
             android:label="@string/app_name" />
 

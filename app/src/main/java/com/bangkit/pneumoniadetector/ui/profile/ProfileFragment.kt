@@ -1,6 +1,7 @@
 package com.bangkit.pneumoniadetector.ui.profile
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,7 +42,14 @@ class ProfileFragment : Fragment() {
                 .load(user.photoUrl)
                 .into(binding.imageViewPhoto)
         } else {
-            binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
+            when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default)
+                } // Night mode is not active, we're using the light theme
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    binding.imageViewPhoto.setImageResource(R.drawable.photo_profile_default_white)
+                } // Night mode is active, we're using dark theme
+            }
         }
 
         binding.textViewName.text = user?.displayName.toString()
