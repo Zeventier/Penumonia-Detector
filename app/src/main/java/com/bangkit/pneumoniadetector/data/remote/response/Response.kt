@@ -11,6 +11,7 @@ data class History(
     val prediction: String? = null,
     val accuracy: String? = null,
     val description: String? = null,
+    val createdAt: String? = null,
     val photoUrl: String? = null,
     val userId: String? = null
 ){

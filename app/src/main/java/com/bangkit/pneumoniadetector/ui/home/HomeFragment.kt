@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +22,14 @@ import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.pneumoniadetector.data.adapter.LoadingStateAdapter
 import com.bangkit.pneumoniadetector.data.adapter.ResultListAdapter
+import com.bangkit.pneumoniadetector.data.remote.response.History
 import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
 import com.bangkit.pneumoniadetector.ui.detail.DetailActivity
+import com.bangkit.pneumoniadetector.ui.history.HistoryAdapter
+import com.bangkit.pneumoniadetector.ui.history.HistoryFragment
+import com.bangkit.pneumoniadetector.ui.history.RecentAdapter
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
 
 class HomeFragment : Fragment() {
 
@@ -32,6 +39,9 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var database: DatabaseReference
+    private var isLastPage = false
+    private var adapter = RecentAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,10 +83,48 @@ class HomeFragment : Fragment() {
 
         binding.textViewName.text = "Hi, " + user?.displayName.toString()
 
+        binding.rvRecent.layoutManager = LinearLayoutManager(context)
+        binding.rvRecent.adapter = adapter
+        if(!isLastPage)
+            loadData()
+
         // when click cardView, goes to CameraActivity when having camera permission granted
         binding.imageViewButton.setOnClickListener { goesToCameraActivity() }
 
         //setupRecent()
+    }
+
+    private fun loadData() {
+        val myUserId = Firebase.auth.currentUser?.uid
+        get().addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val historyList: MutableList<History> = mutableListOf()
+                for (historySnapshot in dataSnapshot.children) {
+                    val history: History? = historySnapshot.getValue(History::class.java)
+                    if (history != null) {
+                        if(history.userId == myUserId)
+                            historyList.add(history)
+                    }
+                }
+
+                adapter.addItem(historyList)
+                binding.rvRecent.adapter = adapter
+                isLastPage = true
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+                // ...
+            }
+        })
+    }
+
+    private fun get() : Query
+    {
+        database = Firebase.database.reference
+
+        return database.child("history").orderByKey().limitToFirst(3)
     }
 
     override fun onDestroyView() {
@@ -111,7 +159,7 @@ class HomeFragment : Fragment() {
             }
         )
         homeViewModel.data.observe(viewLifecycleOwner){
-            adapter.submitData(lifecycle, it)
+            //adapter.submitData(lifecycle, it)
         }
 
         // Dummy data
@@ -130,5 +178,6 @@ class HomeFragment : Fragment() {
     companion object{
         val REQUIRED_CAMERA_PERMISSION = arrayOf(Manifest.permission.CAMERA)
         const val REQUEST_CAMERA_CODE_PERMISSION = 10
+        private const val TAG = "HistoryFragment"
     }
 }

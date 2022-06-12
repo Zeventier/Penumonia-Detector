@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.bangkit.pneumoniadetector.data.adapter.ResultPagingSource
+import com.bangkit.pneumoniadetector.data.remote.response.History
 import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
 import com.bangkit.pneumoniadetector.data.remote.retrofit.ApiConfig
 
@@ -19,7 +20,7 @@ class HomeViewModel : ViewModel() {
     private val webApiService = ApiConfig.getApiService()
 
     //Limiting item showed in rvRecent by only 3 item
-    fun resultsData(): LiveData<PagingData<ResultItem>>{
+    private fun resultsData(): LiveData<PagingData<History>>{
         return Pager(
             config = PagingConfig(
                 pageSize = 5,
@@ -31,7 +32,7 @@ class HomeViewModel : ViewModel() {
         ).liveData
     }
 
-    val data:LiveData<PagingData<ResultItem>> = resultsData().cachedIn(viewModelScope)
+    val data:LiveData<PagingData<History>> = resultsData().cachedIn(viewModelScope)
 
     // Dummy data
     val listDataTemp: List<ResultItem> =
