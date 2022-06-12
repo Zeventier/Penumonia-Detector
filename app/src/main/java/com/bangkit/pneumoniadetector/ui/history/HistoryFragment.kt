@@ -51,7 +51,7 @@ class HistoryFragment : Fragment() {
         val user = Firebase.auth.currentUser
 
         if(user?.photoUrl != null) {
-            Glide.with(FragmentActivity())
+            Glide.with(requireContext())
                 .load(user.photoUrl)
                 .into(binding.imageViewPhoto)
         } else {

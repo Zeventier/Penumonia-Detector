@@ -44,9 +44,10 @@ class ProfileFragment : Fragment() {
         val user = Firebase.auth.currentUser
 
         if(user?.photoUrl != null) {
-            Glide.with(FragmentActivity())
+            Glide.with(requireContext())
                 .load(user.photoUrl)
                 .into(binding.imageViewPhoto)
+            Log.w(TAG, "URL: ${user.photoUrl}")
         } else {
             when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
