@@ -5,20 +5,7 @@ import numpy as np
 from PIL import Image
 from keras.preprocessing import image
 
-from google.cloud import storage
-
-# Enable Cloud Storage
-client = storage.Client()
-
-# Reference an existing bucket.
-bucket = client.get_bucket('pristine-sphere-343506.appspot.com')
-
-# Download a file from your bucket.
-model_ml = bucket.get_blob('ML_Model/model.h5')
-model_ml.download_to_filename('model.h5')
-
-
-model = tf.keras.models.load_model(model_ml)
+model = tf.keras.models.load_model('saved_model/new_model.h5')
 model.compile(
     optimizer='adam',
     loss='categorical_crossentropy',
@@ -37,10 +24,10 @@ def preprocess_image(img, target_size):
 
 def predict(data):
     img = Image.open(data)
-    processed_image = preprocess_image(img, target_size=(224, 224))
+    processed_image = preprocess_image(img, target_size=(299, 299))
 
     images = np.vstack([processed_image])
-    classes = model.predict(processed_image, batch_size=10)
+    classes = model.predict(processed_image, batch_size=30)
     label = np.where(classes[0] > 0.5, 1,0)
     print(label)   
     if label[0]==1:
