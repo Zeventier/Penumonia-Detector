@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app, resources=r'/*')
 @app.route('/')
 def index():
-    return "Pneumonia Detector is Running"
+    return "Pneumonix is Running"
 
 @app.route('/predict', methods=['GET','POST'])
 def predict_images():
