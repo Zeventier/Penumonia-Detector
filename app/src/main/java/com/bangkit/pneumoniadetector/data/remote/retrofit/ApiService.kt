@@ -1,8 +1,8 @@
 package com.bangkit.pneumoniadetector.data.remote.retrofit
 
 import com.bangkit.pneumoniadetector.data.remote.response.ResultResponse
-import retrofit2.http.GET
-import retrofit2.http.Query
+import okhttp3.MultipartBody
+import retrofit2.http.*
 
 interface ApiService {
     @GET("list")
@@ -10,4 +10,10 @@ interface ApiService {
         @Query("page") page: Int,
         @Query("size") size: Int
     ): ResultResponse
+
+    @Multipart
+    @POST("predict")
+    fun getPredict(
+        @Part file: MultipartBody.Part
+    )
 }

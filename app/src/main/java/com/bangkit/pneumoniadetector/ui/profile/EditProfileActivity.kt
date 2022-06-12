@@ -3,9 +3,11 @@ package com.bangkit.pneumoniadetector.ui.profile
 import android.Manifest
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -30,12 +32,19 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.util.*
 
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
     private var getFile: File? = null
+    // Create a storage reference from our app
+    private val storage = Firebase.storage
+    val storageRef = storage.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +74,11 @@ class EditProfileActivity : AppCompatActivity() {
                 BitmapFactory.decodeFile(myFile.path),
                 isBackCamera
             )
-             */
+            */
 
             binding.imageViewPhoto.setImageBitmap(result)
         } else if(user?.photoUrl != null) {
-            Glide.with(FragmentActivity())
+            Glide.with(this)
                 .load(user.photoUrl)
                 .into(binding.imageViewPhoto)
         } else {
@@ -113,25 +122,98 @@ class EditProfileActivity : AppCompatActivity() {
                 binding.etEmail.error = "Masukkan email"
             }
             else -> {
-                val profileUpdates = userProfileChangeRequest {
-                    displayName = name
-                }
 
-                user!!.updateProfile(profileUpdates)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.d(TAG, "User profile updated.")
-                            user.updateEmail(email)
-                                .addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        Log.d(TAG, "User email address updated.")
-                                        val intent = Intent(this, MainActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
+                if(intent.getBooleanExtra(EXTRA_IS_PICTURE, false)) {
+                    val myFile = intent.getSerializableExtra(EXTRA_PICTURE) as File
+
+                    getFile = myFile
+                    val result = BitmapFactory.decodeFile(myFile.path)
+
+                    /*IMPORTANT!!
+                    IF THE IMAGE IS ROTATED, USES THIS
+                    val result = rotateBitmap(
+                        BitmapFactory.decodeFile(myFile.path),
+                        isBackCamera
+                    )
+                    */
+                    val uniqueString = UUID.randomUUID().toString()
+                    val path = "profilePic/$uniqueString.jpg"
+                    val fileRef = storageRef.child(path)
+
+                    val baos = ByteArrayOutputStream()
+                    result.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                    val data = baos.toByteArray()
+
+                    var uploadTask = fileRef.putBytes(data)
+                    uploadTask.addOnFailureListener {
+                        // Handle unsuccessful uploads
+                        Toast.makeText(
+                            this@EditProfileActivity,
+                            "Profile Picture failed to update",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }.addOnSuccessListener { taskSnapshot ->
+                        // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                        Toast.makeText(
+                            this@EditProfileActivity,
+                            "Profile Picture updated",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val profileUpdates = userProfileChangeRequest {
+                            displayName = name
+
+                            uploadTask.continueWithTask { task ->
+                                if(!task.isSuccessful) {
+                                    task.exception?.let {
+                                        throw it
                                     }
                                 }
+                                fileRef.downloadUrl
+                            }.addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    val downloadUri = task.result
+                                    photoUri = downloadUri
+                                }
+                            }
                         }
+
+                        user!!.updateProfile(profileUpdates)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Log.d(TAG, "User profile updated.")
+                                    user.updateEmail(email)
+                                        .addOnCompleteListener { task ->
+                                            if (task.isSuccessful) {
+                                                Log.d(TAG, "User email address updated.")
+                                                val intent = Intent(this, MainActivity::class.java)
+                                                startActivity(intent)
+                                                finish()
+                                            }
+                                        }
+                                }
+                            }
                     }
+                } else {
+                    val profileUpdates = userProfileChangeRequest {
+                        displayName = name
+                    }
+
+                    user!!.updateProfile(profileUpdates)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d(TAG, "User profile updated.")
+                                user.updateEmail(email)
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            Log.d(TAG, "User email address updated.")
+                                            val intent = Intent(this, MainActivity::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        }
+                                    }
+                            }
+                        }
+                }
             }
         }
     }
@@ -149,6 +231,26 @@ class EditProfileActivity : AppCompatActivity() {
         else{
             val intent = Intent(this, CameraProfileActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == REQUEST_CAMERA_CODE_PERMISSION){
+            if(!GeneralTools.allPermissionGranted(REQUIRED_CAMERA_PERMISSION, this)){
+                GeneralTools.showAlertDialog(this, getString(R.string.camera_usage_not_granted))
+            }
+            else{
+                Toast.makeText(
+                    this,
+                    getString(R.string.camera_usage_granted),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 

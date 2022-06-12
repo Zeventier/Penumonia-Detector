@@ -21,6 +21,7 @@ class CameraProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraProfileBinding
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var isFlashLightOn: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +33,10 @@ class CameraProfileActivity : AppCompatActivity() {
 
         // set btn_back and btn_flash icon color to black
         binding.btnBack.apply {
-            setIconTintResource(R.color.black)
+            setIconTintResource(R.color.white)
             setOnClickListener { finish() }
         }
-        binding.btnFlash.setIconTintResource(R.color.black)
+        binding.btnFlash.setIconTintResource(R.color.white)
 
 
         binding.btnTakePhoto.setOnClickListener { takePhoto() }
@@ -64,7 +65,22 @@ class CameraProfileActivity : AppCompatActivity() {
 
             try{
                 cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
+                val cam = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
+
+                binding.btnFlash.setOnClickListener {
+                    if( cam.cameraInfo.hasFlashUnit() ){
+                        cam.cameraControl.enableTorch(!isFlashLightOn)
+                        binding.btnFlash.setIconTintResource(if (isFlashLightOn) R.color.white_2 else R.color.red_1)
+                        isFlashLightOn = !isFlashLightOn
+                    }
+                    else
+                        Toast.makeText(
+                            this@CameraProfileActivity,
+                            "Your phone doesn't have a flashlight feature",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                }
             }
             catch(exc: Exception){
                 Toast.makeText(this@CameraProfileActivity, getString(R.string.failed_to_show_camera), Toast.LENGTH_SHORT)

@@ -54,3 +54,5 @@ data class ResultItem(
     @field:SerializedName("photoUrl")
     var photoUrl: String?
 ): Parcelable
+
+
