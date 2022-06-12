@@ -2,9 +2,11 @@ package com.bangkit.pneumoniadetector.ui.camera
 
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
@@ -12,6 +14,7 @@ import com.bangkit.pneumoniadetector.R
 import com.bangkit.pneumoniadetector.databinding.ActivityCameraBinding
 import com.bangkit.pneumoniadetector.tools.FilePhotoTools
 import com.bangkit.pneumoniadetector.ui.preview.PreviewActivity
+import java.io.File
 
 class CameraActivity : AppCompatActivity() {
 
@@ -35,7 +38,7 @@ class CameraActivity : AppCompatActivity() {
         }
         binding.btnFlash.setIconTintResource(R.color.white)
 
-
+        binding.btnFromGallery.setOnClickListener { takeFromGallery() }
         binding.btnTakePhoto.setOnClickListener { takePhoto() }
 
     }
@@ -105,14 +108,38 @@ class CameraActivity : AppCompatActivity() {
                 }
 
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    val intent = Intent(this@CameraActivity, PreviewActivity::class.java).apply {
-                        putExtra(PreviewActivity.EXTRA_PICTURE, photoFile)
-                        putExtra(PreviewActivity.EXTRA_IS_PICTURE, true)
-                    }
-                    startActivity(intent)
+                    goToPreviewActivity(photoFile)
                 }
             }
         )
 
+    }
+
+    // A method for going to previewActivity with a file sent to it
+    private fun goToPreviewActivity(photoFile: File) {
+        val intent = Intent(this@CameraActivity, PreviewActivity::class.java).apply {
+            putExtra(PreviewActivity.EXTRA_PICTURE, photoFile)
+            putExtra(PreviewActivity.EXTRA_IS_PICTURE, true)
+        }
+        startActivity(intent)
+    }
+
+    // A method for taking picture from gallery
+    private fun takeFromGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){  result ->
+        if(result.resultCode == RESULT_OK){
+            val selectedImg: Uri = result.data?.data as Uri
+            val photoFile = FilePhotoTools.uriToFile(selectedImg, this@CameraActivity)
+            goToPreviewActivity(photoFile)
+        }
     }
 }
