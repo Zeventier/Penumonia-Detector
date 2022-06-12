@@ -2,6 +2,7 @@ package com.bangkit.pneumoniadetector.ui.profile
 
 import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,13 +14,16 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.bangkit.pneumoniadetector.R
 import com.bangkit.pneumoniadetector.databinding.ActivityEditProfileBinding
-import com.bangkit.pneumoniadetector.databinding.ActivityMainBinding
 import com.bangkit.pneumoniadetector.tools.GeneralTools
 import com.bangkit.pneumoniadetector.ui.MainActivity
 import com.bangkit.pneumoniadetector.ui.camera.CameraActivity
@@ -44,7 +48,7 @@ class EditProfileActivity : AppCompatActivity() {
     private var getFile: File? = null
     // Create a storage reference from our app
     private val storage = Firebase.storage
-    val storageRef = storage.reference
+    private val storageRef = storage.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +96,14 @@ class EditProfileActivity : AppCompatActivity() {
             }
         }
 
+        if (!allPermissionsGranted()) {
+            ActivityCompat.requestPermissions(
+                this,
+                REQUIRED_CAMERA_PERMISSION,
+                REQUEST_CAMERA_CODE_PERMISSION
+            )
+        }
+
         setupAction()
     }
 
@@ -122,7 +134,7 @@ class EditProfileActivity : AppCompatActivity() {
                 binding.etEmail.error = "Masukkan email"
             }
             else -> {
-
+                showLoading(true)
                 if(intent.getBooleanExtra(EXTRA_IS_PICTURE, false)) {
                     val myFile = intent.getSerializableExtra(EXTRA_PICTURE) as File
 
@@ -152,46 +164,47 @@ class EditProfileActivity : AppCompatActivity() {
                             "Profile Picture failed to update",
                             Toast.LENGTH_SHORT
                         ).show()
-                    }.addOnSuccessListener { taskSnapshot ->
+                    }.addOnSuccessListener {
                         // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
                         Toast.makeText(
                             this@EditProfileActivity,
                             "Profile Picture updated",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val profileUpdates = userProfileChangeRequest {
-                            displayName = name
-
-                            uploadTask.continueWithTask { task ->
-                                if(!task.isSuccessful) {
-                                    task.exception?.let {
-                                        throw it
-                                    }
-                                }
-                                fileRef.downloadUrl
-                            }.addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    val downloadUri = task.result
-                                    photoUri = downloadUri
+                        uploadTask.continueWithTask { task ->
+                            if(!task.isSuccessful) {
+                                showLoading(false)
+                                task.exception?.let {
+                                    throw it
                                 }
                             }
-                        }
-
-                        user!!.updateProfile(profileUpdates)
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    Log.d(TAG, "User profile updated.")
-                                    user.updateEmail(email)
+                            fileRef.downloadUrl
+                        }.addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val downloadUri = task.result
+                                val profileUpdates = userProfileChangeRequest {
+                                    displayName = name
+                                    photoUri = downloadUri
+                                    Log.d(TAG, photoUri.toString())
+                                }
+                                    user!!.updateProfile(profileUpdates)
                                         .addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
-                                                Log.d(TAG, "User email address updated.")
-                                                val intent = Intent(this, MainActivity::class.java)
-                                                startActivity(intent)
-                                                finish()
+                                                Log.d(TAG, "User profile updated.")
+                                                user.updateEmail(email)
+                                                    .addOnCompleteListener { task ->
+                                                        if (task.isSuccessful) {
+                                                            showLoading(false)
+                                                            Log.d(TAG, "User email address updated.")
+                                                            val intent = Intent(this, MainActivity::class.java)
+                                                            startActivity(intent)
+                                                            finish()
+                                                        }
+                                                    }
                                             }
                                         }
-                                }
                             }
+                        }
                     }
                 } else {
                     val profileUpdates = userProfileChangeRequest {
@@ -205,6 +218,7 @@ class EditProfileActivity : AppCompatActivity() {
                                 user.updateEmail(email)
                                     .addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
+                                            showLoading(false)
                                             Log.d(TAG, "User email address updated.")
                                             val intent = Intent(this, MainActivity::class.java)
                                             startActivity(intent)
@@ -232,6 +246,10 @@ class EditProfileActivity : AppCompatActivity() {
             val intent = Intent(this, CameraProfileActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_CAMERA_PERMISSION.all {
+        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onRequestPermissionsResult(
@@ -263,6 +281,10 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object {

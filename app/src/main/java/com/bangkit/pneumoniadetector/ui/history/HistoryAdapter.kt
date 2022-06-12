@@ -34,7 +34,7 @@ class HistoryAdapter() :
             .load(listHistory[position].photoUrl)
             .into(holder.binding.imageViewItemImage)
         holder.binding.apply {
-            textViewAccuracy.text = listHistory[position].accuracy
+            textViewAccuracy.text = listHistory[position].probability
             textViewName.text = listHistory[position].name
             textViewDatecreated.text = listHistory[position].createdAt
             textViewPneumoniatype.text = listHistory[position].prediction

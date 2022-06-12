@@ -11,10 +11,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bangkit.pneumoniadetector.R
 import com.bangkit.pneumoniadetector.data.remote.response.History
 import com.bangkit.pneumoniadetector.databinding.FragmentHistoryBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -50,9 +52,16 @@ class HistoryFragment : Fragment() {
 
         val user = Firebase.auth.currentUser
 
+        val circularProgressDrawable = CircularProgressDrawable(requireContext())
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+
         if(user?.photoUrl != null) {
             Glide.with(requireContext())
                 .load(user.photoUrl)
+                .placeholder(circularProgressDrawable)
+                .apply(RequestOptions().override(40, 40))
                 .into(binding.imageViewPhoto)
         } else {
             when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
@@ -89,40 +98,6 @@ class HistoryFragment : Fragment() {
 
 
         loadData()
-
-        setupHistory()
-
-//        Glide.with(requireContext())
-//            .load("https://media.suara.com/pictures/653x366/2020/12/08/91579-david-gadgetin.jpg")
-//            .into(binding.imageViewPhoto)
-    }
-
-    // method for set up history recycler view with list of pneumonia results
-    private fun setupHistory() {
-//        binding.rvHistory.layoutManager = LinearLayoutManager(context)
-//        val adapter = HistoryAdapter()
-
-
-
-//        binding.rvHistory.adapter = adapter.withLoadStateFooter(
-//            footer = LoadingStateAdapter{
-//                adapter.retry()
-//            }
-//        )
-//        historyViewModel.data.observe(viewLifecycleOwner){
-//            adapter.submitData(lifecycle, it)
-//        }
-        // Dummy data
-        //adapter.submitData(lifecycle, historyViewModel.pagingTemp)
-
-//        adapter.setOnClickCallback(object: ResultListAdapter.OnItemClickCallback{
-//            override var data: History? = null
-//            override fun onItemClicked() {
-//                val intent = Intent(requireActivity(), DetailActivity::class.java)
-//                intent.putExtra(DetailActivity.EXTRA_DATA, data)
-//                startActivity(intent)
-//            }
-//        })
     }
 
     private fun loadData()

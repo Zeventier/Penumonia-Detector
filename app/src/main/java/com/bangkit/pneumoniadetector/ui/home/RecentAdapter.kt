@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.pneumoniadetector.data.remote.response.History
 import com.bangkit.pneumoniadetector.databinding.ItemRowHistoryBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class RecentAdapter() :
     RecyclerView.Adapter<RecentAdapter.ViewHolder>() {
@@ -34,7 +35,7 @@ class RecentAdapter() :
             .load(listHistory[position].photoUrl)
             .into(holder.binding.imageViewItemImage)
         holder.binding.apply {
-            textViewAccuracy.text = listHistory[position].accuracy
+            textViewAccuracy.text = listHistory[position].probability
             textViewName.text = listHistory[position].name
             textViewDatecreated.text = listHistory[position].createdAt
             textViewPneumoniatype.text = listHistory[position].prediction

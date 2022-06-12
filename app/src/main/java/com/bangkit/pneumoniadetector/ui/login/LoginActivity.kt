@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.bangkit.pneumoniadetector.databinding.ActivityLoginBinding
 import com.bangkit.pneumoniadetector.ui.MainActivity
@@ -43,8 +44,10 @@ class LoginActivity : AppCompatActivity() {
                     binding.etPassword.error = "Masukkan password"
                 }
                 else -> {
+                    showLoading(true)
                     auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this) { task ->
+                            showLoading(false)
                             if (task.isSuccessful) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success")
@@ -82,6 +85,11 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
 
     companion object {
         private const val TAG = "LoginActivity"

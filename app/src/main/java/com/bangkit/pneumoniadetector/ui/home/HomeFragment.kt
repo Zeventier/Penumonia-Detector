@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bangkit.pneumoniadetector.data.adapter.LoadingStateAdapter
 import com.bangkit.pneumoniadetector.data.adapter.ResultListAdapter
 import com.bangkit.pneumoniadetector.data.remote.response.History
@@ -28,6 +29,7 @@ import com.bangkit.pneumoniadetector.ui.detail.DetailActivity
 import com.bangkit.pneumoniadetector.ui.history.HistoryAdapter
 import com.bangkit.pneumoniadetector.ui.history.HistoryFragment
 import com.bangkit.pneumoniadetector.ui.history.RecentAdapter
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 
@@ -53,11 +55,6 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        //
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
         return binding.root
     }
 
@@ -66,9 +63,16 @@ class HomeFragment : Fragment() {
 
         val user = Firebase.auth.currentUser
 
+        val circularProgressDrawable = CircularProgressDrawable(requireContext())
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+
         if(user?.photoUrl != null) {
             Glide.with(requireContext())
                 .load(user.photoUrl)
+                .placeholder(circularProgressDrawable)
+                .apply(RequestOptions().override(40, 40))
                 .into(binding.imageViewPhoto)
         } else {
             when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {

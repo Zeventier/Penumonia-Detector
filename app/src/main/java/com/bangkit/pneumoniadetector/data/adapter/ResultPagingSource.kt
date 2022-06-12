@@ -66,7 +66,7 @@ class ResultPagingSource (private val apiService: ApiService, var limitPage: Int
                 }
             })
 
-            Log.e(TAG, historyList[0].accuracy.toString())
+
             return LoadResult.Page(
                 data =  historyList,
                 prevKey = if (page == INITIAL_PAGE_INDEX) null else page - 1,
