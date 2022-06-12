@@ -2,14 +2,12 @@ package com.bangkit.pneumoniadetector.ui.history
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.pneumoniadetector.data.remote.response.History
 import com.bangkit.pneumoniadetector.databinding.ItemRowHistoryBinding
 import com.bumptech.glide.Glide
 
-class HistoryAdapter() :
+class HistoryAdapter :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback

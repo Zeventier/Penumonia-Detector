@@ -1,5 +1,6 @@
 package com.bangkit.pneumoniadetector.ui.history
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +15,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bangkit.pneumoniadetector.R
 import com.bangkit.pneumoniadetector.data.remote.response.History
 import com.bangkit.pneumoniadetector.databinding.FragmentHistoryBinding
+import com.bangkit.pneumoniadetector.ui.detail.DetailActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.ktx.auth
@@ -34,7 +35,7 @@ class HistoryFragment : Fragment() {
     private var adapter = HistoryAdapter()
     private var isLoading = false
     private var isLastPage = false
-    private var key: String? = null;
+    private var key: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -74,7 +75,7 @@ class HistoryFragment : Fragment() {
             }
         }
 
-        binding.textViewName.text = "Hi, " + user?.displayName.toString()
+        binding.textViewName.text = getString(R.string.hi, user?.displayName.toString())
 
         binding.rvHistory.layoutManager = LinearLayoutManager(context)
         binding.rvHistory.adapter = adapter
@@ -89,8 +90,8 @@ class HistoryFragment : Fragment() {
                 if(!isLoading && !isLastPage)
                 {
                     if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
-                        isLoading=true;
-                        loadData();
+                        isLoading=true
+                        loadData()
                     }
                 }
             }
@@ -129,6 +130,14 @@ class HistoryFragment : Fragment() {
                 // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
                 // ...
+            }
+        })
+
+        adapter.setOnItemClickCallback(object: HistoryAdapter.OnItemClickCallback{
+            override fun onItemClicked(historyDetail: History) {
+                val intent = Intent(requireActivity(), DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_DATA, historyDetail)
+                startActivity(intent)
             }
         })
     }

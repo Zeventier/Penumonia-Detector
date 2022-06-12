@@ -2,10 +2,10 @@ package com.bangkit.pneumoniadetector.ui.camera
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -13,11 +13,9 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.bangkit.pneumoniadetector.R
-import com.bangkit.pneumoniadetector.databinding.ActivityCameraBinding
 import com.bangkit.pneumoniadetector.databinding.ActivityCameraProfileBinding
 import com.bangkit.pneumoniadetector.tools.FilePhotoTools
 import com.bangkit.pneumoniadetector.ui.preview.PreviewActivity
-import com.bangkit.pneumoniadetector.ui.profile.EditProfileActivity
 import java.io.File
 
 class CameraProfileActivity : AppCompatActivity() {

@@ -7,11 +7,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-    @GET("list")
-    suspend fun getResultList(
-        @Query("page") page: Int,
-        @Query("size") size: Int
-    ): ResultResponse
 
     @Multipart
     @POST("predict")

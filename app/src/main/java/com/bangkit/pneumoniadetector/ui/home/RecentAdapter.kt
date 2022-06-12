@@ -1,16 +1,13 @@
-package com.bangkit.pneumoniadetector.ui.history
+package com.bangkit.pneumoniadetector.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.pneumoniadetector.data.remote.response.History
 import com.bangkit.pneumoniadetector.databinding.ItemRowHistoryBinding
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 
-class RecentAdapter() :
+class RecentAdapter :
     RecyclerView.Adapter<RecentAdapter.ViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback

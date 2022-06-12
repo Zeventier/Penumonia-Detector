@@ -3,24 +3,19 @@ package com.bangkit.pneumoniadetector.ui.preview
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.pneumoniadetector.data.remote.response.History
 import com.bangkit.pneumoniadetector.data.remote.response.PostPredictResponse
 import com.bangkit.pneumoniadetector.data.remote.retrofit.ApiConfig
 import com.bangkit.pneumoniadetector.databinding.ActivityPreviewBinding
-import com.bangkit.pneumoniadetector.ui.MainActivity
 import com.bangkit.pneumoniadetector.tools.FilePhotoTools
-import com.bangkit.pneumoniadetector.ui.ViewModelFactory
-import com.bangkit.pneumoniadetector.ui.detail.DetailActivity
 import com.bangkit.pneumoniadetector.ui.detail.EditDetailActivity
 import com.bangkit.pneumoniadetector.ui.profile.EditProfileActivity
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -41,10 +36,6 @@ class PreviewActivity : AppCompatActivity() {
     // Create a storage reference from our app
     private val storage = Firebase.storage
     private val storageRef = storage.reference
-
-    private val previewViewModel by viewModels<PreviewViewModel> {
-        ViewModelFactory.getInstance()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

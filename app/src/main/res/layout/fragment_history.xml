@@ -28,7 +28,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Prediction Histories"
+            android:text="@string/prediction_histories"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/rv_history"
@@ -41,7 +41,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="26dp"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="Hi, Beautiful"
+            android:text="@string/hi_beautiful"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imageView_photo"
             app:layout_constraintTop_toTopOf="parent" />

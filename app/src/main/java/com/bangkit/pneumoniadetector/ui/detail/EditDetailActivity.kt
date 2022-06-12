@@ -2,19 +2,16 @@ package com.bangkit.pneumoniadetector.ui.detail
 
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
-import com.bumptech.glide.Glide
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.pneumoniadetector.R
 import com.bangkit.pneumoniadetector.data.remote.response.History
-import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
 import com.bangkit.pneumoniadetector.databinding.ActivityEditDetailBinding
 import com.bangkit.pneumoniadetector.ui.preview.PreviewActivity
-import com.google.firebase.auth.ktx.auth
+import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -46,7 +43,7 @@ class EditDetailActivity : AppCompatActivity() {
     }
 
     private fun setupData(data: History) {
-        binding.editTextName.setText(data.name.toString() ?: "Anon")
+        binding.editTextName.setText(data.name.toString())
         binding.textViewAccuracyContent.text = data.probability.toString()
         binding.textViewPredictionContent.text = data.prediction.toString()
         binding.textViewDescription.text = {

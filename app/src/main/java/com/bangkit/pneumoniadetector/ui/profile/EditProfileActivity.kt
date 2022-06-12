@@ -6,37 +6,23 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.bangkit.pneumoniadetector.R
 import com.bangkit.pneumoniadetector.databinding.ActivityEditProfileBinding
 import com.bangkit.pneumoniadetector.tools.GeneralTools
 import com.bangkit.pneumoniadetector.ui.MainActivity
-import com.bangkit.pneumoniadetector.ui.camera.CameraActivity
 import com.bangkit.pneumoniadetector.ui.camera.CameraProfileActivity
-import com.bangkit.pneumoniadetector.ui.home.HomeFragment
-import com.bangkit.pneumoniadetector.ui.login.LoginActivity
-import com.bangkit.pneumoniadetector.ui.preview.PreviewActivity
-import com.bangkit.pneumoniadetector.ui.register.RegisterActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -156,7 +142,7 @@ class EditProfileActivity : AppCompatActivity() {
                     result.compress(Bitmap.CompressFormat.JPEG, 100, baos)
                     val data = baos.toByteArray()
 
-                    var uploadTask = fileRef.putBytes(data)
+                    val uploadTask = fileRef.putBytes(data)
                     uploadTask.addOnFailureListener {
                         // Handle unsuccessful uploads
                         Toast.makeText(
@@ -179,21 +165,21 @@ class EditProfileActivity : AppCompatActivity() {
                                 }
                             }
                             fileRef.downloadUrl
-                        }.addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                val downloadUri = task.result
+                        }.addOnCompleteListener { taskOne ->
+                            if (taskOne.isSuccessful) {
+                                val downloadUri = taskOne.result
                                 val profileUpdates = userProfileChangeRequest {
                                     displayName = name
                                     photoUri = downloadUri
                                     Log.d(TAG, photoUri.toString())
                                 }
                                     user!!.updateProfile(profileUpdates)
-                                        .addOnCompleteListener { task ->
-                                            if (task.isSuccessful) {
+                                        .addOnCompleteListener { taskTwo ->
+                                            if (taskTwo.isSuccessful) {
                                                 Log.d(TAG, "User profile updated.")
                                                 user.updateEmail(email)
-                                                    .addOnCompleteListener { task ->
-                                                        if (task.isSuccessful) {
+                                                    .addOnCompleteListener { taskThree ->
+                                                        if (taskThree.isSuccessful) {
                                                             showLoading(false)
                                                             Log.d(TAG, "User email address updated.")
                                                             val intent = Intent(this, MainActivity::class.java)
@@ -212,12 +198,12 @@ class EditProfileActivity : AppCompatActivity() {
                     }
 
                     user!!.updateProfile(profileUpdates)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
+                        .addOnCompleteListener { taskFour ->
+                            if (taskFour.isSuccessful) {
                                 Log.d(TAG, "User profile updated.")
                                 user.updateEmail(email)
-                                    .addOnCompleteListener { task ->
-                                        if (task.isSuccessful) {
+                                    .addOnCompleteListener { taskFive ->
+                                        if (taskFive.isSuccessful) {
                                             showLoading(false)
                                             Log.d(TAG, "User email address updated.")
                                             val intent = Intent(this, MainActivity::class.java)
