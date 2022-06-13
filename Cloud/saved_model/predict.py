@@ -29,12 +29,16 @@ def predict(data):
     images = np.vstack([processed_image])
     classes = model.predict(processed_image, batch_size=30)
     label = np.where(classes[0] > 0.5, 1,0)
-    print(label)   
+    list_output = []
+    list_output.append(max(classes[0]))
+    print(label)
     if label[0]==1:
-        return ("normal") 
+        list_output.append("bacterial") 
     elif label[1]==1:
-        return ("covid") 
+        list_output.append("covid") 
     elif label[2]==1:
-        return ("bacterial") 
+        list_output.append("normal") 
     else:
-        return ("viral")
+        list_output.append("viral") 
+    return list_output
+
