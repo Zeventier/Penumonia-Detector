@@ -27,22 +27,23 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/textView_title"
+            android:id="@+id/textView_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/imageView_itemImage"
             android:fontFamily="@font/montserrat_medium"
-            android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="normal"
+            android:maxLines="1"
             card_view:layout_constraintBottom_toBottomOf="@+id/imageView_itemImage"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
@@ -50,6 +51,24 @@
             card_view:layout_constraintTop_toTopOf="@+id/imageView_itemImage"
             card_view:layout_constraintVertical_bias="0.016"
             tools:text="Name" />
+
+        <TextView
+            android:id="@+id/textView_pneumoniatype"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@id/imageView_itemImage"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:maxLines="1"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView_itemImage"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView_name"
+            tools:text="Pneumonia Type" />
 
         <TextView
             android:id="@+id/textView_accuracy"
@@ -60,17 +79,17 @@
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/imageView_itemImage"
             android:fontFamily="@font/montserrat_medium"
-            android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="normal"
+            android:maxLines="1"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toEndOf="@+id/imageView_itemImage"
-            card_view:layout_constraintTop_toBottomOf="@+id/textView_title"
-            tools:text="Pneumonia Type" />
+            card_view:layout_constraintTop_toBottomOf="@+id/textView_pneumoniatype"
+            tools:text="Accuracy" />
 
         <TextView
-            android:id="@+id/textView_name"
+            android:id="@+id/textView_datecreated"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -78,31 +97,13 @@
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/imageView_itemImage"
             android:fontFamily="@font/montserrat_medium"
-            android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="normal"
+            android:maxLines="1"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toEndOf="@+id/imageView_itemImage"
             card_view:layout_constraintTop_toBottomOf="@+id/textView_accuracy"
-            tools:text="Accuracy" />
-
-        <TextView
-            android:id="@+id/textView_prediction"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@id/imageView_itemImage"
-            android:fontFamily="@font/montserrat_medium"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintStart_toEndOf="@+id/imageView_itemImage"
-            card_view:layout_constraintTop_toBottomOf="@+id/textView_name"
             tools:text="Date Created" />
 
 

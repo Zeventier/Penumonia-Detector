@@ -16,3 +16,6 @@ Pneumonia Detector Using Chest X-ray Image
 
 ## Application Design
 https://www.figma.com/file/m0Y8Gwb9aYjzyc3CouDTJp/Pneumonia-Detector?node-id=0%3A1
+
+## Machine Learning Model
+https://drive.google.com/drive/folders/1wyE5BBqaHClQTHKyAC7JA0q50XmdiyUQ?usp=sharing

@@ -5,7 +5,11 @@
       <map>
         <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/drawable-v24/edit_text_background.xml" value="0.2715" />
         <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.2715" />
-        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/activity_detail.xml" value="0.18802083333333333" />
+        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/activity_camera.xml" value="0.358695652173913" />
+        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/activity_camera_profile.xml" value="0.358695652173913" />
+        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/activity_detail.xml" value="0.33" />
+        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/activity_edit_detail.xml" value="0.33" />
+        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
         <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/activity_landing_page.xml" value="0.358695652173913" />
         <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
@@ -13,18 +17,33 @@
         <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/activity_register.xml" value="0.358695652173913" />
         <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/fragment_blank.xml" value="0.33" />
         <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/fragment_history.xml" value="0.358695652173913" />
-        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/fragment_home.xml" value="0.5" />
-        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/fragment_profile.xml" value="0.5474339035769828" />
+        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/fragment_home.xml" value="0.37604166666666666" />
+        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/fragment_profile.xml" value="0.2905982905982906" />
+        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/item_loading.xml" value="0.358695652173913" />
         <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/layout/item_row_history.xml" value="0.358695652173913" />
         <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/menu/menu_detail_activity.xml" value="0.5" />
+        <entry key="..\:/Android Project/Penumonia-Detector/app/src/main/res/menu/menu_edit_detail_activity.xml" value="0.190625" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/drawable-v24/edit_text_background.xml" value="0.207" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.207" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/drawable/cardview_background.xml" value="0.202" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/drawable/ic_baseline_photo_album_24.xml" value="0.202" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.207" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/drawable/rectangle_camera.xml" value="0.202" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/drawable/text_view_background_camera.xml" value="0.202" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_camera.xml" value="0.25" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_detail.xml" value="0.33" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_edit_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/activity_preview.xml" value="0.20416666666666666" />
-        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/fragment_history.xml" value="0.20416666666666666" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/fragment_home.xml" value="0.5" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/item_loading.xml" value="0.19010416666666666" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/layout/item_row_history.xml" value="0.33" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/menu/menu_detail_activity.xml" value="0.203125" />
+        <entry key="..\:/IFolder/Android/AndroidStudioProjects/Penumonia-Detector/app/src/main/res/menu/menu_edit_detail_activity.xml" value="0.203125" />
       </map>
     </option>
   </component>
