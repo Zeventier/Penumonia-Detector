@@ -27,7 +27,9 @@ class EditDetailActivity : AppCompatActivity() {
         binding = ActivityEditDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.red_1)))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         data = intent.getParcelableExtra<History>(EXTRA_DATA_BEFORE_EDIT) as History
         setupData(data)
 
