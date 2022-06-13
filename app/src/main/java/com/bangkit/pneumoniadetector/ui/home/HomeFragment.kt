@@ -10,26 +10,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
-import com.bangkit.pneumoniadetector.R
-import com.bangkit.pneumoniadetector.databinding.FragmentHomeBinding
-import com.bangkit.pneumoniadetector.tools.GeneralTools
-import com.bangkit.pneumoniadetector.ui.camera.CameraActivity
-import com.bumptech.glide.Glide
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bangkit.pneumoniadetector.R
 import com.bangkit.pneumoniadetector.data.adapter.LoadingStateAdapter
 import com.bangkit.pneumoniadetector.data.adapter.ResultListAdapter
 import com.bangkit.pneumoniadetector.data.remote.response.History
-import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
+import com.bangkit.pneumoniadetector.databinding.FragmentHomeBinding
+import com.bangkit.pneumoniadetector.tools.GeneralTools
+import com.bangkit.pneumoniadetector.ui.camera.CameraActivity
 import com.bangkit.pneumoniadetector.ui.detail.DetailActivity
-import com.bangkit.pneumoniadetector.ui.history.HistoryAdapter
-import com.bangkit.pneumoniadetector.ui.history.HistoryFragment
-import com.bangkit.pneumoniadetector.ui.history.RecentAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
 
@@ -48,16 +45,9 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        //
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
         return binding.root
     }
 
@@ -66,9 +56,16 @@ class HomeFragment : Fragment() {
 
         val user = Firebase.auth.currentUser
 
+        val circularProgressDrawable = CircularProgressDrawable(requireContext())
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+
         if(user?.photoUrl != null) {
             Glide.with(requireContext())
                 .load(user.photoUrl)
+                .placeholder(circularProgressDrawable)
+                .apply(RequestOptions().override(40, 40))
                 .into(binding.imageViewPhoto)
         } else {
             when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
@@ -81,7 +78,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.textViewName.text = "Hi, " + user?.displayName.toString()
+        binding.textViewName.text = getString(R.string.hi, user?.displayName.toString())
 
         binding.rvRecent.layoutManager = LinearLayoutManager(context)
         binding.rvRecent.adapter = adapter
@@ -118,6 +115,14 @@ class HomeFragment : Fragment() {
                 // ...
             }
         })
+
+        adapter.setOnItemClickCallback(object: RecentAdapter.OnItemClickCallback{
+            override fun onItemClicked(historyDetail: History) {
+                val intent = Intent(requireActivity(), DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_DATA, historyDetail)
+                startActivity(intent)
+            }
+        })
     }
 
     private fun get() : Query
@@ -147,32 +152,6 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), CameraActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    // method for set up history recycler view with list of pneumonia results
-    private fun setupRecent() {
-        binding.rvRecent.layoutManager = LinearLayoutManager(context)
-        val adapter = ResultListAdapter()
-        binding.rvRecent.adapter = adapter.withLoadStateFooter(
-            footer = LoadingStateAdapter{
-                adapter.retry()
-            }
-        )
-        homeViewModel.data.observe(viewLifecycleOwner){
-            //adapter.submitData(lifecycle, it)
-        }
-
-        // Dummy data
-        adapter.submitData(lifecycle, homeViewModel.pagingTemp)
-
-        adapter.setOnClickCallback(object: ResultListAdapter.OnItemClickCallback{
-            override var data: ResultItem? = null
-            override fun onItemClicked() {
-                val intent = Intent(requireActivity(), DetailActivity::class.java)
-                intent.putExtra(DetailActivity.EXTRA_DATA, data)
-                startActivity(intent)
-            }
-        })
     }
 
     companion object{

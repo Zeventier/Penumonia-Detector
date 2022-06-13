@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Diagnose Your Lungs"
+            android:text="@string/diagnose_your_lungs"
             android:textColor="#CD0000"
             android:textSize="32sp"
             android:textStyle="bold"
@@ -83,7 +83,7 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#D70032"
-            android:text="GET STARTED"
+            android:text="@string/get_started"
             android:textStyle="bold"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +105,7 @@
                 android:id="@+id/tv_already_have_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have an account?"
+                android:text="@string/already_have_an_account"
                 android:textStyle="bold" />
 
             <TextView
@@ -114,9 +114,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:clickable="true"
-                android:text="Login"
+                android:text="@string/login"
                 android:textColor="#CD0000"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:focusable="true" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@
             android:layout_width="320dp"
             android:layout_height="320dp"
             android:layout_marginTop="24dp"
+            android:contentDescription="@string/gambar_x_ray_yang_diprediksi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="Your Prediction"
+            android:text="@string/your_prediction"
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text=":"
+                    android:text="@string/colon"
                     app:layout_constraintStart_toEndOf="@+id/textView_name"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -164,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text=":"
+                    android:text="@string/colon"
                     app:layout_constraintStart_toEndOf="@+id/textView_prediction"
                     app:layout_constraintTop_toTopOf="@id/textView_predictionContent"/>
 
@@ -173,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text=":"
+                    android:text="@string/colon"
                     app:layout_constraintStart_toEndOf="@+id/textView_name"
                     app:layout_constraintTop_toTopOf="@+id/textView_accuracyContent" />
 

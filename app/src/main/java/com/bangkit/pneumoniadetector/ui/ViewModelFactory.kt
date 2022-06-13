@@ -2,6 +2,7 @@ package com.bangkit.pneumoniadetector.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.bangkit.pneumoniadetector.ui.preview.PreviewViewModel
 
 class ViewModelFactory :  ViewModelProvider.NewInstanceFactory(){
 
@@ -10,6 +11,9 @@ class ViewModelFactory :  ViewModelProvider.NewInstanceFactory(){
         return when {
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel() as T
+            }
+            modelClass.isAssignableFrom(PreviewViewModel::class.java) -> {
+                PreviewViewModel() as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

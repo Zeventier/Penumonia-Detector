@@ -6,18 +6,25 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @IgnoreExtraProperties
+@Parcelize
 data class History(
     val name: String? = null,
     val prediction: String? = null,
-    val accuracy: String? = null,
+    val probability: String? = null,
     val description: String? = null,
     val createdAt: String? = null,
     val photoUrl: String? = null,
     val userId: String? = null
-){
-    // Null default values create a no-argument default constructor, which is needed
-    // for deserialization from a DataSnapshot.
-}
+): Parcelable
+
+
+data class PostPredictResponse(
+    @field:SerializedName("pneumonia-type")
+    val pneumoniaType: String?,
+
+    @field:SerializedName("probability")
+    val probability: String?
+)
 
 data class ResultResponse(
     @field:SerializedName("error")
@@ -54,5 +61,7 @@ data class ResultItem(
     @field:SerializedName("photoUrl")
     var photoUrl: String?
 ): Parcelable
+
+
 
 

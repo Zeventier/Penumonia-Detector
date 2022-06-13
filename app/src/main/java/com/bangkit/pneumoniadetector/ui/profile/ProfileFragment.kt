@@ -3,17 +3,17 @@ package com.bangkit.pneumoniadetector.ui.profile
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bangkit.pneumoniadetector.R
-import com.bumptech.glide.Glide
 import com.bangkit.pneumoniadetector.databinding.FragmentProfileBinding
 import com.bangkit.pneumoniadetector.ui.login.LoginActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -30,8 +30,6 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val profileViewModel =
-            ViewModelProvider(this)[ProfileViewModel::class.java]
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
@@ -43,11 +41,17 @@ class ProfileFragment : Fragment() {
 
         val user = Firebase.auth.currentUser
 
+        val circularProgressDrawable = CircularProgressDrawable(requireContext())
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+
         if(user?.photoUrl != null) {
             Glide.with(requireContext())
                 .load(user.photoUrl)
+                .placeholder(circularProgressDrawable)
+                .apply(RequestOptions().override(130, 130))
                 .into(binding.imageViewPhoto)
-            Log.w(TAG, "URL: ${user.photoUrl}")
         } else {
             when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
@@ -79,9 +83,6 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-//        Glide.with(requireContext())
-//            .load("https://media.suara.com/pictures/653x366/2020/12/08/91579-david-gadgetin.jpg")
-//            .into(binding.imageViewPhoto)
     }
 
     override fun onDestroyView() {

@@ -4,21 +4,19 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.bangkit.pneumoniadetector.data.remote.response.History
-import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
 import com.bangkit.pneumoniadetector.data.remote.retrofit.ApiService
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 
 // if limitPage is more than 0 then the page is limited to how many limitPage inputed
-class ResultPagingSource (private val apiService: ApiService, var limitPage: Int? = 0)
+class ResultPagingSource (private val apiService: ApiService, private var limitPage: Int? = 0)
     : PagingSource<Int, History>() {
 
     private lateinit var database: DatabaseReference
-    private var key: String? = null;
+    private var key: String? = null
 
     private companion object{
         const val INITIAL_PAGE_INDEX = 1
@@ -28,7 +26,6 @@ class ResultPagingSource (private val apiService: ApiService, var limitPage: Int
     private fun get(key: String?, size: Int) : Query
     {
         database = Firebase.database.reference
-        val myUserId = Firebase.auth.currentUser?.uid
 
         if(key == null){
             return database.child("history").orderByKey().limitToFirst(size)
@@ -66,11 +63,11 @@ class ResultPagingSource (private val apiService: ApiService, var limitPage: Int
                 }
             })
 
-            Log.e(TAG, historyList[0].accuracy.toString())
+
             return LoadResult.Page(
                 data =  historyList,
                 prevKey = if (page == INITIAL_PAGE_INDEX) null else page - 1,
-                nextKey = if (historyList.isNullOrEmpty() || page == limitPage) null else page + 1
+                nextKey = if (historyList.isEmpty() || page == limitPage) null else page + 1
             )
         } catch (exception: Exception) {
             return LoadResult.Error(exception)

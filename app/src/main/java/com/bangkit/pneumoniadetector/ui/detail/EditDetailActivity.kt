@@ -2,16 +2,16 @@ package com.bangkit.pneumoniadetector.ui.detail
 
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
-import com.bumptech.glide.Glide
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.pneumoniadetector.R
-import com.bangkit.pneumoniadetector.data.remote.response.ResultItem
+import com.bangkit.pneumoniadetector.data.remote.response.History
 import com.bangkit.pneumoniadetector.databinding.ActivityEditDetailBinding
+import com.bangkit.pneumoniadetector.ui.preview.PreviewActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -19,7 +19,7 @@ import com.google.firebase.ktx.Firebase
 class EditDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditDetailBinding
-    private lateinit var data: ResultItem
+    private lateinit var data: History
     private lateinit var db: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,12 +28,10 @@ class EditDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.red_1)))
-        data = intent.getParcelableExtra<ResultItem>(EXTRA_DATA_BEFORE_EDIT) as ResultItem
+        data = intent.getParcelableExtra<History>(EXTRA_DATA_BEFORE_EDIT) as History
         setupData(data)
 
         db = Firebase.database
-
-        val historyRef = db.reference.child("history")
 
         //Testing Realtime Database
 //        binding.apply {
@@ -42,31 +40,22 @@ class EditDetailActivity : AppCompatActivity() {
 //            textViewDescription.text = "Lorem Ipsum"
 //        }
 
-//        binding.btnSave.setOnClickListener {
-//            val history = History(
-//                "asdaw",
-//                "asdwa",
-//                "awdas",
-//                "awdasd",
-//                "",
-//                Firebase.auth.currentUser?.uid.toString()
-//            )
-//
-//            historyRef.push().setValue(history) { error, _ ->
-//                if (error != null) {
-//                    Toast.makeText(this, "Error" + error.message, Toast.LENGTH_SHORT).show()
-//                } else {
-//                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
     }
 
-    private fun setupData(data: ResultItem) {
-        binding.editTextName.setText(data.name)
-        binding.textViewAccuracyContent.text = data.accuracy
-        binding.textViewPredictionContent.text = data.pneumoniaType
-        binding.textViewDescription.text = data.description
+    private fun setupData(data: History) {
+        binding.editTextName.setText(data.name.toString())
+        binding.textViewAccuracyContent.text = data.probability.toString()
+        binding.textViewPredictionContent.text = data.prediction.toString()
+        binding.textViewDescription.text = {
+            when (data.prediction) {
+                "viral" -> "Lorem"
+                "covid" -> "Lorammmmmm"
+                "" -> "Loremmmm"
+                else -> {
+                    "BRUH"
+                }
+            }
+        }.toString()
         Glide.with(applicationContext)
             .load(data.photoUrl)
             .into(binding.imageViewImage)
@@ -82,14 +71,32 @@ class EditDetailActivity : AppCompatActivity() {
             R.id.item_save -> {
 
                 // To know which activity call EditDetailActivity
-                val calledFrom = intent.getIntExtra(EXTRA_CALLED_FROM, 0)
-                when(calledFrom){
+                when(intent.getIntExtra(EXTRA_CALLED_FROM, 0)){
                     DetailActivity.FROM_DETAIL_ACTIVITY -> {
                         val intent = Intent()
-                        data = saveData(data)
+                        //data = saveData(data)
                         intent.putExtra(EXTRA_EDIT_DATA, data)
                         setResult(EDIT_DETAIL_RESULT, intent)
                         finish()
+                        true
+                    }
+                    PreviewActivity.FROM_PREVIEW_ACTIVITY -> {
+                        val history = History(
+                            binding.editTextName.text.toString(),
+                            binding.textViewPrediction.text.toString(),
+                            binding.textViewAccuracy.text.toString(),
+                            binding.textViewDescription.text.toString(),
+                            data.createdAt,
+                            data.userId
+                        )
+                        val historyRef = db.reference.child("history")
+                        historyRef.push().setValue(history) { error, _ ->
+                            if (error != null) {
+                                Toast.makeText(this, "Error" + error.message, Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                            }
+                        }
                         true
                     }
                     else -> {
@@ -107,10 +114,10 @@ class EditDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveData(data: ResultItem): ResultItem {
-        data.name = binding.editTextName.text.toString()
-        return data
-    }
+//    private fun saveData(data: History): History {
+//        data.name = binding.editTextName.text.toString()
+//        return data
+//    }
 
     companion object{
         const val EXTRA_EDIT_DATA = "extra_edit_data"

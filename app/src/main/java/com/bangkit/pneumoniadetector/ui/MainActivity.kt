@@ -1,11 +1,9 @@
 package com.bangkit.pneumoniadetector.ui
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -16,6 +14,7 @@ import com.bangkit.pneumoniadetector.databinding.ActivityMainBinding
 import com.bangkit.pneumoniadetector.tools.GeneralTools
 import com.bangkit.pneumoniadetector.ui.home.HomeFragment
 import com.bangkit.pneumoniadetector.ui.login.LoginActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -24,10 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
-
-    private val mainViewModel by viewModels<MainViewModel> {
-        ViewModelFactory.getInstance()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

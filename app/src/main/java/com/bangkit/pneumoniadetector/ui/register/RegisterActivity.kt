@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.bangkit.pneumoniadetector.databinding.ActivityRegisterBinding
 import com.bangkit.pneumoniadetector.ui.MainActivity
@@ -59,8 +60,10 @@ class RegisterActivity : AppCompatActivity() {
                     binding.etPassword.error = "Masukkan password"
                 }
                 else -> {
+                    showLoading(true)
                     auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this) { task ->
+                            showLoading(false)
                             if (task.isSuccessful) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success")
@@ -99,6 +102,10 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object {
