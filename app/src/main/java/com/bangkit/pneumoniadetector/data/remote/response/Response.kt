@@ -20,10 +20,10 @@ data class History(
 
 data class PostPredictResponse(
     @field:SerializedName("pneumonia-type")
-    val pneumoniaType: String?,
+    val pneumoniaType: String,
 
     @field:SerializedName("probability")
-    val probability: String?
+    val probability: String
 )
 
 data class ResultResponse(

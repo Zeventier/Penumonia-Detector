@@ -8,6 +8,7 @@ import retrofit2.http.*
 
 interface ApiService {
 
+    @Headers("Content-Type: application/json", "Accept: application/json")
     @Multipart
     @POST("predict")
     fun postPredict(

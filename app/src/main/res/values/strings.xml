@@ -40,5 +40,7 @@
     <string name="gambar_preview">Gambar Preview</string>
     <string name="gambar_x_ray_yang_diprediksi">Gambar x-ray yang diprediksi</string>
     <string name="hi">Hi, %1$s</string>
+    <string name="prediction">Prediction</string>
+    <string name="probability">Probability</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
