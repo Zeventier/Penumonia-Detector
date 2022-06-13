@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from saved_model import predict
 import json
@@ -17,12 +17,14 @@ def predict_images():
     if data == None:
         return 'No data received'
     else:
-        prediction = predict.predict(data)
-
+        result = predict.predict(data)
+        prediction = result[1]
+        probability = result[0]
     output={
-     "pneumonia-type" : str(prediction)
+     "pneumonia-type" : str(prediction),
+     "probability" : str(probability)
     }
-    return json.dumps(output)
+    return jsonify(output)
 
     
 

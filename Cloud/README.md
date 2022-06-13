@@ -7,13 +7,13 @@ ML Model deployment in App Engine:
 3.  From the cloud shell terminal clone this repository.
 
     ```sh
-    https://github.com/Zeventier/Penumonia-Detector.git
+    https://github.com/Zeventier/Pneumonix.git
     ```
 
 4.  Move to the working directory
 
     ```sh
-    cd Penumonia-Detector
+    cd Pneumonix
     cd Cloud
     ```
 
@@ -56,3 +56,8 @@ gcloud config set app/cloud_build_timeout [NUMBER OF SECONDS]
 
 - Value error in user code
   Make sure you have the same target_size and batch_size in predict.py and the model you use (ask your ML cohort or look into ipynb file in which the model is created)
+
+## Machine Learning Model
+
+https://drive.google.com/drive/folders/1wyE5BBqaHClQTHKyAC7JA0q50XmdiyUQ?usp=sharing
+
