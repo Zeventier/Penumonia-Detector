@@ -22,7 +22,7 @@
         android:background="#C4C4C4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:contentDescription="@string/gambar_preview"
         app:layout_constraintDimensionRatio="3:4"
